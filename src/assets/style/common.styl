@@ -1,5 +1,74 @@
+color-main = #1493cf
 *
   margin 0
   padding 0
+body
+  font-family "Microsoft YaHei"
+  font-size 14px
 .activeNav
-  color #1593d0
+  color color-main!important
+.active-language
+  color color-main!important
+  border-color color-main!important
+.header-box
+  background #272b2f
+  height 80px
+  header
+    padding 16px 40px 0
+    .logo
+      height 50px
+      vertical-align middle
+      margin-right 100px
+    .nav-main
+      display inline-block
+      color #babbbb
+      font-size 16px
+      width calc(100% - 340px)
+      span
+        cursor pointer
+        display inline-block
+        margin 0 30px
+        line-height 30px
+        &:hover
+          color #1593d0
+      .activeNav
+        border-bottom 2px solid #1593d0
+    .change-language
+      display inline-block
+      span
+        width 30px
+        height 30px
+        line-height 30px
+        display inline-block
+        border 1px solid #ffffff
+        color #fff
+        border-radius 50%
+        font-size 14px
+        text-align center
+        cursor pointer
+        &:nth-child(n+2)
+          margin-left 16px
+.footer-box
+  background #3e3f3f
+  padding 0 40px
+  .home-tit
+    height 80px
+    color color-main
+    text-align center
+    font-size 28px
+    line-height 80px
+  .my-info
+    color #afafaf
+    border-top 1px solid #fff
+    border-bottom 1px solid #fff
+  .company-info
+    color #afafaf
+    padding 10px 0 20px 0
+    display flex
+    .logo
+      width 190px
+    .info-name
+      padding 24px 40px 0 40px
+      width 400px
+
+      

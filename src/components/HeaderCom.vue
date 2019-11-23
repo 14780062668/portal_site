@@ -3,15 +3,33 @@
     <header>
       <img class="logo" src="../assets/img/logo.png" alt="" />
       <nav class="nav-main">
-        <span :class="[{ activeNav: active == 1 }]">关于思豪</span>
-        <span :class="[{ activeNav: active == 2 }]">产品中心</span>
-        <span>生产设备</span>
-        <span>质量控制</span>
-        <span>联系我们</span>
+        <span :class="[{ activeNav: active == 1 }]" @click="changeNav(1)"
+          >关于思豪</span
+        >
+        <span :class="[{ activeNav: active == 2 }]" @click="changeNav(2)"
+          >产品中心</span
+        >
+        <span :class="[{ activeNav: active == 3 }]" @click="changeNav(3)"
+          >生产设备</span
+        >
+        <span :class="[{ activeNav: active == 4 }]" @click="changeNav(4)"
+          >质量控制</span
+        >
+        <span :class="[{ activeNav: active == 5 }]" @click="changeNav(5)"
+          >联系我们</span
+        >
       </nav>
       <div class="change-language">
-        <span>CN</span>
-        <span>EN</span>
+        <span
+          :class="[{ 'active-language': languageVal == 1 }]"
+          @click="changeLanguage(1)"
+          >CN</span
+        >
+        <span
+          :class="[{ 'active-language': languageVal == 2 }]"
+          @click="changeLanguage(2)"
+          >EN</span
+        >
       </div>
     </header>
   </div>
@@ -23,48 +41,23 @@ export default {
   components: {},
   data() {
     return {
-      active: 1
+      active: 1,
+      languageVal: 1
     };
   },
   computed: {},
   created() {},
-  methods: {}
+  methods: {
+    // 切换nav
+    changeNav(type) {
+      this.active = type;
+    },
+    // 切换语言
+    changeLanguage(type) {
+      this.languageVal = type;
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
-.header-box
-  background #272b2f
-  height 80px
-  header
-    padding 20px 40px
-    .logo
-      height 45px
-      vertical-align middle
-      margin-right 40px
-    .nav-main
-      display inline-block
-      color #babbbb
-      font-size 24px
-      width calc(100% - 300px)
-      span
-        cursor pointer
-        display inline-block
-        padding 0 30px
-        &:hover
-          color #1593d0
-    .change-language
-      display inline-block
-      span
-        width 50px
-        height 50px
-        line-height 50px
-        display inline-block
-        border 1px solid #ffffff
-        color #fff
-        border-radius 50%
-        font-size 18px
-        text-align center
-        &:nth-child(n+2)
-          margin-left 16px
-
 </style>
