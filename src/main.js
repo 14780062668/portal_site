@@ -3,14 +3,15 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-import Antd from 'ant-design-vue';
-import store from './store/index.js'
+//import antd from "ant-design-vue";
+//import "ant-design-vue/dist/antd.css";
+import store from "./store/index.js";
 
+//Vue.use(antd)
 Vue.config.productionTip = false;
-Vue.use(Antd);
 
 // 引入css
-import './assets/style/default.styl';
+import "./assets/style/default.styl";
 
 /* eslint-disable no-new */
 new Vue({

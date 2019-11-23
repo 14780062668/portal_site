@@ -5,6 +5,11 @@ color-main = #1493cf
 body
   font-family "Microsoft YaHei"
   font-size 14px
+img
+  max-width 100%
+a
+  color #afafaf
+  text-decoration none
 .activeNav
   color color-main!important
 .active-language
@@ -59,8 +64,8 @@ body
     line-height 80px
   .my-info
     color #afafaf
-    border-top 1px solid #fff
-    border-bottom 1px solid #fff
+    border-top 1px solid #515151
+    border-bottom 1px solid #515151
   .company-info
     color #afafaf
     padding 10px 0 20px 0
@@ -68,7 +73,39 @@ body
     .logo
       width 190px
     .info-name
-      padding 24px 40px 0 40px
-      width 400px
-
-      
+      padding 24px 0 0 40px
+      width calc(100% - 610px)
+    .nav
+      display flex
+      padding-top 28px
+      a
+        margin 0 10px
+        &:hover
+          color color-main
+  .my-info
+    padding 22px 0 30px
+    .info-message
+      width 800px
+      margin 0 auto
+    p
+      i
+        font-size 22px
+        vertical-align middle
+    .info-base
+      i
+        color color-main
+      .tag
+        padding 0 14px 0 6px
+    .info-adress
+      margin-top 18px
+      i
+        color color-main
+      .tag
+        margin-left 2px
+      .email-icon
+        margin-left 114px
+        font-size 24px
+.wrapper
+  min-height 600px
+  .box
+    margin 0 40px 40px
