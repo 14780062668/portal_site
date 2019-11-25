@@ -54,7 +54,6 @@
             <div class="title">
               <h4>产 品 销 售 区 域</h4>
             </div>
-            
             <div class="map">
               <img src="../../assets/img/index-map.jpg" alt="">
             </div>
@@ -90,14 +89,15 @@ export default {
         color #e0e0e0
         border-radius 2px
         width 180px
-        height 100px
+        height 180px
         text-align center
-        line-height 36px
-        padding-top 80px
+        padding-top 90px
         font-size 24px
+        p
+          margin-bottom 0
     .introduce-detail
       flex 1
-      padding 142px 0 0 50px
+      padding 150px 0 0 40px
       h4
         color #1493cf
         font-size 18px
@@ -125,11 +125,11 @@ export default {
           width 56%
           color #3e3f3f
           p
-            line-height 2
-            margin-bottom 16px
+            line-height 1.8
             text-indent 28px
   .map-area
     .title
+      margin-bottom 10px
       h4
         margin-left 230px
         color #1493cf
@@ -137,7 +137,6 @@ export default {
         font-weight 400
         position relative
         text-indent 28px
-        
         &:before
           width 14px
           height 14px

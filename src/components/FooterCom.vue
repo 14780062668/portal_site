@@ -2,7 +2,7 @@
   <footer class="footer-box">
     <div class="home-tit">
       <i class="iconfont iconxiaoxi1"></i>
-      关于我们
+      联系我们
     </div>
     <div class="my-info">
       <div class="info-message">
@@ -25,7 +25,7 @@
       <img class="logo" src="../assets/img/logo.png" alt="" />
       <div class="info-name">
         <p>YUYAO SEEHAO VACUUM TECHNOLOGY CO.LTD</p>
-        <p>余姚市思豪真空科技有限公司</p>
+        <p class="cn-name">余姚市思豪真空科技有限公司</p>
       </div>
       <div class="nav">
         <a href="javascript:void(0)">关于思豪</a>

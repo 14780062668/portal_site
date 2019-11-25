@@ -3,11 +3,11 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-//import antd from "ant-design-vue";
-//import "ant-design-vue/dist/antd.css";
+import {Carousel} from "ant-design-vue";
+import "ant-design-vue/dist/antd.css";
 import store from "./store/index.js";
 
-//Vue.use(antd)
+Vue.use(Carousel);
 Vue.config.productionTip = false;
 
 // 引入css

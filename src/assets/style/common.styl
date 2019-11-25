@@ -3,7 +3,7 @@ color-main = #1493cf
   margin 0
   padding 0
 body
-  font-family "Microsoft YaHei"
+  font-family "SimSun,Microsoft YaHei"
   font-size 14px
 img
   max-width 100%
@@ -57,53 +57,65 @@ a
   background #3e3f3f
   padding 0 40px
   .home-tit
-    height 80px
+    height 140px
     color color-main
     text-align center
-    font-size 28px
-    line-height 80px
-  .my-info
-    color #afafaf
-    border-top 1px solid #515151
-    border-bottom 1px solid #515151
+    font-size 30px
+    line-height 140px
+    i
+      font-size 32px    
   .company-info
     color #afafaf
-    padding 10px 0 20px 0
+    padding 30px 0 80px 0
     display flex
+    font-size 16px
     .logo
-      width 190px
+      width 240px
     .info-name
-      padding 24px 0 0 40px
-      width calc(100% - 610px)
+      padding 32px 0 0 80px
+      width 500px
+      p
+        margin-bottom 0
+        text-align right
+        padding-right 14px
+      .cn-name
+        letter-spacing 14px
+        padding-right 0
     .nav
-      display flex
-      padding-top 28px
+      flex 1
+      padding-top 46px
+      text-align right
+      font-size 14px
       a
-        margin 0 10px
+        margin 0 0 0 40px
         &:hover
           color color-main
   .my-info
-    padding 22px 0 30px
+    padding 40px 0 30px
+    color #afafaf
+    border-top 1px solid #515151
+    border-bottom 1px solid #515151
     .info-message
-      width 800px
+      width 900px
       margin 0 auto
     p
+      font-size 20px
       i
         font-size 22px
         vertical-align middle
     .info-base
+      margin-bottom 20px
       i
         color color-main
       .tag
         padding 0 14px 0 6px
     .info-adress
-      margin-top 18px
       i
         color color-main
       .tag
         margin-left 2px
       .email-icon
-        margin-left 114px
+        margin-left 148px
         font-size 24px
 .wrapper
   min-height 600px

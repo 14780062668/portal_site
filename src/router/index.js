@@ -22,6 +22,11 @@ export default new Router({
       component: Index
     },
     {
+      path: 'demo',
+      name: 'Demo',
+      component: () => import('@/views/Demo.vue'),
+    },
+    {
       path: "hello",
       name: "HelloWorld",
       component: HelloWorld
