@@ -1,22 +1,22 @@
 <template>
   <div class="header-box">
     <header>
-      <img class="logo" src="../assets/img/logo.png" alt="" />
+      <img
+        class="logo"
+        @click="goHomePage"
+        src="../assets/img/logo.png"
+        alt=""
+      />
       <nav class="nav-main">
-        <span :class="[{ activeNav: active == 1 }]" @click="changeNav(1)"
-          >关于思豪</span
-        >
-        <span :class="[{ activeNav: active == 2 }]" @click="changeNav(2)"
-          >产品中心</span
-        >
-        <span :class="[{ activeNav: active == 3 }]" @click="changeNav(3)"
-          >生产设备</span
-        >
-        <span :class="[{ activeNav: active == 4 }]" @click="changeNav(4)"
-          >质量控制</span
-        >
-        <span :class="[{ activeNav: active == 5 }]" @click="changeNav(5)"
-          >联系我们</span
+        <router-link
+          tag="span"
+          v-for="item in navList"
+          :key="item.id"
+          :class="[{ activeNav: active == item.id }]"
+          :to="{
+            path: item.pathName
+          }"
+          >{{ item.name }}</router-link
         >
       </nav>
       <div class="change-language">
@@ -41,16 +41,57 @@ export default {
   components: {},
   data() {
     return {
-      active: 1,
-      languageVal: 1
+      languageVal: 1,
+      navList: [
+        {
+          id: 1,
+          name: "关于思豪",
+          pathName: "about_me"
+        },
+        {
+          id: 2,
+          name: "产品中心",
+          pathName: "about_me2"
+        },
+        {
+          id: 3,
+          name: "生产设备",
+          pathName: "about_me3"
+        },
+        {
+          id: 4,
+          name: "质量控制",
+          pathName: "about_me4"
+        },
+        {
+          id: 5,
+          name: "联系方式",
+          pathName: "about_me5"
+        }
+      ]
     };
   },
-  computed: {},
+  computed: {
+    active(){
+      let result = 0;
+      let {name} =this.$route;
+      switch(name){
+        case 'about_me':
+          result = 1;
+          break;
+        default:
+          result = 0;
+      }
+      return result;
+    }
+  },
   created() {},
   methods: {
-    // 切换nav
-    changeNav(type) {
-      this.active = type;
+    // 去首页
+    goHomePage(){
+      this.$router.push({
+        name: "Index"
+      });
     },
     // 切换语言
     changeLanguage(type) {
@@ -59,5 +100,4 @@ export default {
   }
 };
 </script>
-<style lang="stylus" scoped>
-</style>
+<style lang="stylus" scoped></style>

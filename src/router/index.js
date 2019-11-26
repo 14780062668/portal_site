@@ -1,13 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
-import HelloWorld from "@/components/HelloWorld";
-import Index from "@/views/index/Index.vue";
 
 Vue.use(Router);
 
 export default new Router({
   mode: "history",
-  base: "/",
+  //base: "",
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
@@ -19,17 +17,28 @@ export default new Router({
     {
       path: "/",
       name: "Index",
-      component: Index
+      redirect: '/index',
+      component: () => import('@/views/index/Index.vue'),
     },
     {
-      path: 'demo',
+      path: "/index",
+      name: "Index",
+      component: () => import('@/views/index/Index.vue'),
+    },
+    {
+      path: "/about_me",
+      name: "about_me",
+      component: () => import('@/views/aboutMe/Index.vue'),
+    },
+    {
+      path: '/demo',
       name: 'Demo',
       component: () => import('@/views/Demo.vue'),
     },
     {
-      path: "hello",
-      name: "HelloWorld",
-      component: HelloWorld
+      path: '*',
+      name: 'Index',
+      component: () => import('@/views/index/Index.vue')
     }
   ]
 });

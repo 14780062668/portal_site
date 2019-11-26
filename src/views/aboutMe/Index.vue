@@ -1,6 +1,12 @@
 <template>
   <div class="wrapper">
-    <banner />  
+    <div class="my-pic">
+      <img src="../../assets/img/index-1.jpg" alt="" />
+      <div class="text-box">
+        <p>ABOUT US</p>
+        <p>关 于 我 们</p>
+      </div>
+    </div>
     <div class="box">
       <div class="content">
         <div class="introduce">
@@ -57,12 +63,8 @@
   </div>
 </template>
 <script>
-import Banner from './components/Banner.vue';
 export default {
   mixins: [],
-  components: {
-    Banner
-  },
   data() {
     return {};
   },
@@ -75,9 +77,18 @@ export default {
 .my-pic
   width 100%
   margin-bottom 40px
+  position relative
   img
     width 100%
     height 500px
+  .text-box
+    color #1493cf
+    font-size 30px
+    position absolute
+    left 130px
+    top 100px
+    p
+      margin-bottom 0
 .box
   border-top 2px solid #6e6e6e
   .content
