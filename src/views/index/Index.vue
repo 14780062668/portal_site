@@ -89,7 +89,7 @@ export default {
         color #e0e0e0
         border-radius 2px
         width 180px
-        height 180px
+        height 178px
         text-align center
         padding-top 90px
         font-size 24px
@@ -100,13 +100,13 @@ export default {
       padding 150px 0 0 40px
       h4
         color #1493cf
-        font-size 18px
+        font-size 23px
         font-weight 400
         position relative
-        text-indent 28px
+        text-indent 30px
         &:before
-          width 14px
-          height 14px
+          width 20px
+          height 20px
           content ''
           background #1493cf
           border-radius 1px
@@ -114,13 +114,15 @@ export default {
           vertical-align middle
           position absolute
           left 0
-          top 6px
+          top 8px
       .detail-info
-        padding 30px 0 40px
+        padding 20px 0 40px
         display flex
         .imgs
           width 44%
           padding-right 40px
+          img
+            margin-bottom 10px
         .text
           width 56%
           color #3e3f3f
@@ -131,15 +133,15 @@ export default {
     .title
       margin-bottom 10px
       h4
-        margin-left 230px
+        margin-left 220px
         color #1493cf
-        font-size 18px
+        font-size 23px
         font-weight 400
         position relative
-        text-indent 28px
+        text-indent 30px
         &:before
-          width 14px
-          height 14px
+          width 20px
+          height 20px
           content ''
           background #1493cf
           border-radius 1px
@@ -147,5 +149,5 @@ export default {
           vertical-align middle
           position absolute
           left 0
-          top 6px
+          top 8px
 </style>

@@ -43,7 +43,7 @@ export default {
   position relative
   overflow hidden
   width 100%
-  height 700px
+  height 600px
   .content
     display flex
     .list
@@ -52,14 +52,14 @@ export default {
 .ant-carousel >>> .slick-slide {
   text-align: center;
   width: 100%;
-  height: 700px;
-  line-height: 700px;
+  height: 600px;
+  line-height: 600px;
   background: #364d79;
   overflow: hidden;
 }
 
 .ant-carousel >>> .slick-slide img {
   width: 100%;
-  height: 700px;
+  height: 600px;
 }
 </style>
