@@ -1,153 +1,108 @@
 <template>
   <div class="wrapper">
-    <banner />  
+    <banner />
     <div class="box">
-      <div class="content">
-        <div class="introduce">
-          <div class="tag">
-            <p>ABOUT US</p>
-            <p>关于我们</p>
-          </div>
-          <div class="introduce-detail">
-            <h4>公 司 介 绍</h4>
-            <div class="detail-info">
-              <div class="imgs">
-                <img src="../../assets/img/index-1.jpg" alt="" />
-                <img src="../../assets/img/index-2.jpg" alt="" />
-              </div>
-              <div class="text">
-                <p>
-                  余姚市思豪真空科技有限公司是一家集科、工、贸为一体的机械加工企业。我司于2004年初创，
-                  专业加工各类特种合金精密零配件，产品主要用于各类真空成套设备及检测仪器。
-                  经过十多年的拼搏，我司逐步发展壮大，并于2015年3月重新注册成立并开始向出口型加工企业转型。
-                </p>
-                <p>
-                  我司的加工材料包括各种电渣重熔不锈钢加工件，铜合金加工件，可伐合金加工件，镍铝及镍铬合金加工件，
-                  各类镍基高温合金加工件等等各类特殊合金加工件。并可提供配套的镀锌，镀锡，镀金等各种表面加工。
-                  我司产品可用于陶瓷及玻璃产品的封接，被广泛应用于各类真空电极，传感器，热电偶的组装。
-                  我司拥有国内先进的数控加工设备，可满足客户的各类订单较短纳期的交货需求。我司还配备专业的检测设备
-                  并培养熟练的品控人员，从而保证了能及时交付各类加工产品，并保证质量的可靠性。
-                </p>
-                <p>
-                  我司的技术人员及操作员工在机械加工行业均有超过二十年的专业经验，熟悉加工件在各类真空设备上的组装及
-                  应用。我司在特种合金加工领域建立了一整套完善的供应链系统，建立了成套的从原材料到成品的存储体系，
-                  故我司可及时响应客户的各类产品需求，为客户提供一套完整的特种合金加工方案。
-                </p>
-                <p>
-                  随着我司的战略转型和业务方向调整，为了适应国际贸易的需要，我司于2018年初将海外销售部迁往上海，
-                  专业从事我司产品的海外销售及出口手续的办理。目前我司的合金加工制品在欧美的发达市场已逐步获得客户的
-                  认可和肯定，海外销售规模逐步扩大，目前我司产品已广泛应用于爱发科，可特莱斯科，欧瑞康等成套真空系统中。
-                  希望可以和更多的国内外客商携手，共谋企业发展大业！
-                </p>
-                <p>“专注于真空设备的精密零配件加工”是我司的核心竞争优势！</p>
-              </div>
-            </div>
-          </div>
+      <div class="why-box">
+        <h2>Why Choose us?</h2>
+        <div class="why-btn">
+          <span @click="gotoInfo">为什么选择我们</span>
+          <i @click="gotoInfo" class="iconfont icondianji-"></i>
         </div>
-        <div class="map-area">
-            <div class="title">
-              <h4>产 品 销 售 区 域</h4>
-            </div>
-            <div class="map">
-              <img src="../../assets/img/index-map.jpg" alt="">
-            </div>
-          </div>
+        <div class="why-intro">
+          <p>在真空领域内的机械加工厂非常多，为什么是您最合适的选择？</p>
+          <p>因为我们更专业！我们的优势在于如下几点：</p>
+        </div>
+        <div class="why-Advantage">
+          <div class="item circle">专业</div>
+          <div class="item plus"><i class="iconfont iconjia"></i></div>
+          <div class="item circle">质优</div>
+          <div class="item plus"><i class="iconfont iconjia"></i></div>
+          <div class="item circle">纳期</div>
+        </div>
+        <list class="product" /> 
       </div>
+       <card-box  class="card-box"/>
     </div>
   </div>
 </template>
 <script>
-import Banner from './components/Banner.vue';
+import Banner from "./components/Banner.vue";
+import List from './components/List.vue';
+import CardBox from './components/CardBox.vue';
 export default {
   mixins: [],
   components: {
-    Banner
+    Banner,
+    List,
+    CardBox
   },
   data() {
     return {};
   },
   computed: {},
   created() {},
-  methods: {}
+  methods: {
+    gotoInfo(){
+      this.$router.push({
+        name: 'index_info'
+      });
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
-.my-pic
-  width 100%
-  margin-bottom 40px
-  img
-    width 100%
-    height 500px
 .box
-  border-top 2px solid #6e6e6e
-  .content
-    padding 40px 24px 20px
-    .introduce
+  padding-top 30px
+  .why-box 
+    text-align center
+    margin-bottom 40px
+    h2
+      color #1493cf
+      font-size 80px
+      margin-bottom 0
+    .why-btn
+      width 590px
+      margin 0 auto 46px
       display flex
-      .tag
-        background-image linear-gradient(#31a9e5, #144da2)
-        color #e0e0e0
-        border-radius 2px
-        width 180px
-        height 178px
+      span
+        color #fff
+        background #1493cf
+        width 480px
+        display inline-block
+        height 64px
+        line-height 64px
         text-align center
-        padding-top 90px
-        font-size 24px
-        p
-          margin-bottom 0
-    .introduce-detail
-      flex 1
-      padding 150px 0 0 40px
-      h4
+        font-size 41px
+        border-radius 4px
+        letter-spacing 16px
+        margin 34px 30px 0 0
+        cursor pointer
+      .icondianji-
         color #1493cf
-        font-size 23px
-        font-weight 400
-        position relative
-        text-indent 30px
-        &:before
-          width 20px
-          height 20px
-          content ''
-          background #1493cf
-          border-radius 1px
-          display inline-block
-          vertical-align middle
-          position absolute
-          left 0
-          top 8px
-      .detail-info
-        padding 20px 0 40px
-        display flex
-        .imgs
-          width 44%
-          padding-right 40px
-          img
-            margin-bottom 10px
-        .text
-          width 56%
-          color #3e3f3f
-          p
-            line-height 1.8
-            text-indent 28px
-  .map-area
-    .title
-      margin-bottom 10px
-      h4
-        margin-left 220px
-        color #1493cf
-        font-size 23px
-        font-weight 400
-        position relative
-        text-indent 30px
-        &:before
-          width 20px
-          height 20px
-          content ''
-          background #1493cf
-          border-radius 1px
-          display inline-block
-          vertical-align middle
-          position absolute
-          left 0
-          top 8px
+        font-size 90px
+        cursor pointer
+    .why-intro
+      color #1493cf
+      font-size 28px
+      text-align center
+      p
+        margin-bottom 4px
+    .why-Advantage
+      width 950px
+      margin 80px auto
+      display flex
+      .item
+        width 190px
+        line-height 190px
+        text-align center
+        border-radius 50%
+      .circle
+        background #1493cf
+        font-size 50px
+        color #fff
+      .plus
+        color #687c6e
+        font-size 50px
+.card-box
+  padding 0 3% 50px
 </style>

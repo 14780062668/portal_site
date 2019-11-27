@@ -16,7 +16,7 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "Index",
+      name: "homePage",
       redirect: '/index',
       component: () => import('@/views/index/Index.vue'),
     },
@@ -24,6 +24,11 @@ export default new Router({
       path: "/index",
       name: "Index",
       component: () => import('@/views/index/Index.vue'),
+    },
+    {
+      path: "/index_info",
+      name: "index_info",
+      component: () => import('@/views/index/Info.vue'),
     },
     {
       path: "/about_me",
@@ -37,7 +42,7 @@ export default new Router({
     },
     {
       path: '*',
-      name: 'Index',
+      name: 'NoRoute',
       component: () => import('@/views/index/Index.vue')
     }
   ]
