@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-      <img src="../assets/ui/index-02.jpg" alt="">
+      <img src="../assets/ui/ui-06.jpeg" alt="">
   </div>
 </template>
 <script>

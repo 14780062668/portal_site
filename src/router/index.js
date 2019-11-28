@@ -4,7 +4,7 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  mode: "hash",
   //base: "",
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
