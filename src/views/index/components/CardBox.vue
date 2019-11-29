@@ -1,7 +1,7 @@
 <template>
   <div class="card-box">
     <div class="title-box">
-      <div class="tag">
+      <div class="tag box-tag">
         <p>QUALITY</p>
         <p>CONTROL</p>
         <p>质量控制</p>
@@ -50,17 +50,6 @@ export default {
       height 1px
       background #3f3f3f
       opacity 0.4
-    .tag
-      background-image linear-gradient(#31a9e5, #144da2)
-      color #e0e0e0
-      border-radius 2px
-      width 172px
-      height 162px
-      padding 22px 0 0 16px
-      font-size 24px
-      p
-        margin-bottom 0
-        color #fff
   .card-list
     margin-top 60px
     display flex

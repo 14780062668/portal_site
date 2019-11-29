@@ -56,7 +56,7 @@ export default {
         {
           id: 3,
           name: "生产设备",
-          pathName: "about_me3"
+          pathName: "equipment"
         },
         {
           id: 4,
@@ -72,12 +72,15 @@ export default {
     };
   },
   computed: {
-    active(){
+    active() {
       let result = 0;
-      let {name} =this.$route;
-      switch(name){
-        case 'about_me':
+      let { name } = this.$route;
+      switch (name) {
+        case "about_me":
           result = 1;
+          break;
+        case "equipment":
+          result = 3;
           break;
         default:
           result = 0;
@@ -88,7 +91,7 @@ export default {
   created() {},
   methods: {
     // 去首页
-    goHomePage(){
+    goHomePage() {
       this.$router.push({
         name: "Index"
       });

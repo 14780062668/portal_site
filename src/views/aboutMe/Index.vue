@@ -10,7 +10,7 @@
     <div class="box">
       <div class="content">
         <div class="introduce">
-          <div class="tag">
+          <div class="tag box-tag">
             <p>ABOUT US</p>
             <p>关于我们</p>
           </div>
@@ -80,20 +80,9 @@ export default {
     padding 40px 24px 20px
     .introduce
       display flex
-      .tag
-        background-image linear-gradient(#31a9e5, #144da2)
-        color #e0e0e0
-        border-radius 2px
-        width 180px
-        height 178px
-        text-align center
-        padding-top 90px
-        font-size 24px
-        p
-          margin-bottom 0
     .introduce-detail
       flex 1
-      padding 150px 0 0 40px
+      padding 100px 0 0 40px
       h4
         color #1493cf
         font-size 23px
