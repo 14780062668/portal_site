@@ -41,6 +41,11 @@ export default new Router({
       component: () => import('@/views/equipment/Index.vue'),
     },
     {
+      path: "/quality_control",
+      name: "quality_control",
+      component: () => import('@/views/qualityControl/Index.vue'),
+    },
+    {
       path: '/demo',
       name: 'Demo',
       component: () => import('@/views/Demo.vue'),

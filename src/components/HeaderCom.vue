@@ -61,7 +61,7 @@ export default {
         {
           id: 4,
           name: "质量控制",
-          pathName: "about_me4"
+          pathName: "quality_control"
         },
         {
           id: 5,
@@ -81,6 +81,9 @@ export default {
           break;
         case "equipment":
           result = 3;
+          break;
+        case "quality_control":
+          result = 4;
           break;
         default:
           result = 0;
