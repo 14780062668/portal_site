@@ -46,6 +46,11 @@ export default new Router({
       component: () => import('@/views/qualityControl/Index.vue'),
     },
     {
+      path: "/contact_us",
+      name: "contact_us",
+      component: () => import('@/views/contact/Index.vue'),
+    },
+    {
       path: '/demo',
       name: 'Demo',
       component: () => import('@/views/Demo.vue'),

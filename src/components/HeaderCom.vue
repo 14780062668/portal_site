@@ -66,7 +66,7 @@ export default {
         {
           id: 5,
           name: "联系方式",
-          pathName: "about_me5"
+          pathName: "contact_us"
         }
       ]
     };
@@ -84,6 +84,9 @@ export default {
           break;
         case "quality_control":
           result = 4;
+          break;
+        case "contact_us":
+          result = 5;
           break;
         default:
           result = 0;
