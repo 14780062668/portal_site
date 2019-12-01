@@ -36,8 +36,8 @@ export default {
       iconIndo: {
         url: area,
         size: {
-          width: 40,
-          height: 40
+          width: 30,
+          height: 30
         }
       }
     };
@@ -47,11 +47,11 @@ export default {
     // url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
     handler({ BMap, map }) {
       console.log(BMap, map);
-      //121.194633,30.043997
-      this.center.lng = 121.194633;
-      this.center.lat = 30.043997;
+      //121.200917,30.050531
+      this.center.lng = 121.200917;
+      this.center.lat = 30.050531;
       this.markerPoint = this.center;
-      this.zoom = 16;
+      this.zoom = 18;
     }
   }
 };

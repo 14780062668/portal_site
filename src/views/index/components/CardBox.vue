@@ -55,7 +55,8 @@ export default {
     display flex
     flex-flow wrap
     li
-      width 274px
+      flex 1
+      max-width 274px
       height 368px
       &:nth-child(n+2)
         margin-left 40px
