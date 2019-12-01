@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
      <div class="my-pic">
-      <img src="../../assets/img/info-1.jpg" alt="" />
+      <img src="./assets/img/info-top.jpg" alt="" />
     </div>
     <div class="box">
       <div class="left-icon">
-        <img src="../../assets/img/index-product.jpg" alt="" />
-        <img src="../../assets/img/index-product.jpg" alt="" />
-        <img src="../../assets/img/index-product.jpg" alt="" />
+        <img src="./assets/img/info-1.jpg" alt="" />
+        <img src="../qualityControl/assets/img/6.jpg" alt="" />
+        <img src="../contact/assets/img/top-img.jpg" alt="" />
       </div>
       <div class="right-info">
         <div class="info-item">

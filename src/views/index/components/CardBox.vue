@@ -2,8 +2,8 @@
   <div class="card-box">
     <div class="title-box">
       <div class="tag box-tag">
-        <p>QUALITY</p>
-        <p>CONTROL</p>
+        <p class="eng">QUALITY</p>
+        <p class="eng">CONTROL</p>
         <p>质量控制</p>
       </div>
     </div>

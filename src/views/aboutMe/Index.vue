@@ -11,7 +11,7 @@
       <div class="content">
         <div class="introduce">
           <div class="tag box-tag">
-            <p>ABOUT US</p>
+            <p class="eng">ABOUT US</p>
             <p>关于我们</p>
           </div>
           <div class="introduce-detail">

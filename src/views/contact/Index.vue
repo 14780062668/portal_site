@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="my-pic">
-      <img src="./assets/img/top-pic.jpg" alt="" />
+      <img src="./assets/img/top-img.jpg" alt="" />
       <div class="text-box">
         <p>CONTACT US</p>
         <p>联系我们</p>
@@ -11,7 +11,7 @@
       <div class="content">
         <div class="introduce">
           <div class="tag box-tag">
-            <p>CONTACT US</p>
+            <p class="eng">CONTACT US</p>
             <p>联系我们</p>
           </div>
           <div class="introduce-detail">

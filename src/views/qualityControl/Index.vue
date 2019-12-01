@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="my-pic">
-      <img src="./assets/img/top-pic.jpg" alt="" />
+      <img src="./assets/img/top-img.jpg" alt="" />
       <div class="text-box">
         <p>QUALITY CONTROL</p>
         <p>质量控制</p>
@@ -11,7 +11,7 @@
       <div class="content">
         <div class="introduce">
           <div class="tag box-tag">
-            <p>QUALITY<br />CONTROL</p>
+            <p class="eng">QUALITY<br />CONTROL</p>
             <p>质量控制</p>
           </div>
           <div class="introduce-detail">

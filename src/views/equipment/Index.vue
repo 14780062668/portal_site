@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="my-pic">
-      <img src="./assets/img/equipment-top.jpg" alt="" />
+      <img src="./assets/img/top-img.jpg" alt="" />
       <div class="text-box">
-        <p>PRODUCTS</p>
+        <p>EQUIPMENTS</p>
         <p>生产设备</p>
       </div>
     </div>
@@ -11,7 +11,7 @@
       <div class="content">
         <div class="introduce">
           <div class="tag box-tag">
-            <p>EQUIPMENTS</p>
+            <p class="eng">EQUIPMENTS</p>
             <p>生产设备</p>
           </div>
           <div class="introduce-detail">
@@ -63,12 +63,12 @@
           </div>
         </div>
         <ul class="img-box">
-          <li><img src="./assets/img/equipment-1.jpg" alt="" /></li>
-          <li><img src="./assets/img/equipment-2.jpg" alt="" /></li>
-          <li><img src="./assets/img/equipment-3.jpg" alt="" /></li>
-          <li><img src="./assets/img/equipment-4.jpg" alt="" /></li>
-          <li><img src="./assets/img/equipment-5.jpg" alt="" /></li>
-          <li><img src="./assets/img/equipment-6.jpg" alt="" /></li>
+          <li><img src="./assets/img/1.jpg" alt="" /></li>
+          <li><img src="./assets/img/2.jpg" alt="" /></li>
+          <li><img src="./assets/img/3.jpg" alt="" /></li>
+          <li><img src="./assets/img/4.jpg" alt="" /></li>
+          <li><img src="./assets/img/5.jpg" alt="" /></li>
+          <li><img src="./assets/img/6.jpg" alt="" /></li>
         </ul>
       </div>
     </div>
