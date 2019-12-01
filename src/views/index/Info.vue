@@ -7,7 +7,7 @@
       <div class="left-icon">
         <img src="./assets/img/info-1.jpg" alt="" />
         <img src="../qualityControl/assets/img/6.jpg" alt="" />
-        <img src="../contact/assets/img/top-img.jpg" alt="" />
+        <img src="./assets/img/info-3.jpg" alt="" />
       </div>
       <div class="right-info">
         <div class="info-item">

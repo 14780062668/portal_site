@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="my-pic">
-      <img src="../../assets/img/index-1.jpg" alt="" />
+      <img src="./assets/img/top-img.jpg" alt="" />
       <div class="text-box">
         <p>ABOUT US</p>
         <p>关 于 我 们</p>

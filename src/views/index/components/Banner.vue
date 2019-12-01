@@ -1,33 +1,26 @@
 <template>
   <div class="banner-box">
-    <a-carousel autoplay>
+    <a-carousel>
       <div class="item">
-        <img src="../../../assets/img/index-1.jpg" alt="" />
+        <img src="../assets/img/banner-0.jpg" alt="" />
         <div class="text-box">
-          <p>Precision Machining Service</p>
-          <p>Professional Manufacturer for CNC Machined Parts</p>
+          <div class="info">
+            <p>Precision Machining Service autoplay</p>
+            <p>Professional Manufacturer for CNC Machined Parts</p>
+          </div>
         </div>
       </div>
       <div class="item">
-        <img src="../../../assets/img/index-2.jpg" alt="" />
-        <div class="text-box">
-          <p>Precision Machining Service</p>
-          <p>Professional Manufacturer for CNC Machined Parts</p>
-        </div>
+        <img src="../assets/img/banner-1.jpg" alt="" />
       </div>
       <div class="item">
-        <img src="../../../assets/img/index-1.jpg" alt="" />
-        <div class="text-box">
-          <p>Precision Machining Service</p>
-          <p>Professional Manufacturer for CNC Machined Parts</p>
-        </div>
+        <img src="../assets/img/banner-2.jpg" alt="" />
       </div>
       <div class="item">
-        <img src="../../../assets/img/index-2.jpg" alt="" />
-        <div class="text-box">
-          <p>Precision Machining Service</p>
-          <p>Professional Manufacturer for CNC Machined Parts</p>
-        </div>
+        <img src="../assets/img/banner-3.jpg" alt="" />
+      </div>
+      <div class="item">
+        <img src="../assets/img/banner-4.jpg" alt="" />
       </div>
     </a-carousel>
   </div>
@@ -73,9 +66,13 @@ $bannerHeight = 500px
     font-size 26px
     color #fff
     position absolute
-    left 100px
-    top 80px
+    left 0
+    right 0
+    top 180px
     text-align left
+    .info
+      width 628px
+      margin 0 auto
     p
       margin-bottom 0
 

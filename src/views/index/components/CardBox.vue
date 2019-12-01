@@ -9,16 +9,16 @@
     </div>
     <ul class="card-list">
       <li>
-        <img src="../../../assets/img/card/1.jpg" alt="">
+        <img src="../assets/img/card-1.jpg" alt="">
       </li>
       <li>
-        <img src="../../../assets/img/card/2.jpg" alt="">
+        <img src="../assets/img/card-2.jpg" alt="">
       </li>
       <li>
-        <img src="../../../assets/img/card/3.jpg" alt="">
+        <img src="../assets/img/card-3.jpg" alt="">
       </li>
       <li>
-        <img src="../../../assets/img/card/4.jpg" alt="">
+        <img src="../assets/img/card-4.jpg" alt="">
       </li>
     </ul>
   </div>
