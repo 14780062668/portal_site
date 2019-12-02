@@ -70,4 +70,6 @@ export default {
       letter-spacing 16px
       border-radius 4px
       cursor pointer
+      &:hover
+        opacity 0.8
 </style>
