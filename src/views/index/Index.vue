@@ -19,7 +19,7 @@
           <div class="item plus"><i class="iconfont iconjia"></i></div>
           <div class="item circle">纳期</div>
         </div>
-        <list class="product" /> 
+        <product-list class="product" /> 
       </div>
        <card-box  class="card-box"/>
     </div>
@@ -27,13 +27,13 @@
 </template>
 <script>
 import Banner from "./components/Banner.vue";
-import List from './components/List.vue';
+import ProductList from './components/ProductList.vue';
 import CardBox from './components/CardBox.vue';
 export default {
   mixins: [],
   components: {
     Banner,
-    List,
+    ProductList,
     CardBox
   },
   data() {

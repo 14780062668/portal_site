@@ -9,119 +9,288 @@
     </div>
     <div class="box">
       <div class="content">
-        <div class="introduce">
-          <div class="tag box-tag">
-            <p class="eng">PRODUCTS</p>
-            <p>产品中心</p>
-          </div>
-          <div class="introduce-detail">
-            <div class="detail-info">
-              <div class="text">
-                <p>
-                  Seehow Company was equipped advanced multi-axis CNC machining
-                  centers and press machines which is fully supported by the
-                  latest CAD or 3D software and has the added ability to accept
-                  electronic drawings and models. This is complimented by CNC
-                  CMM inspection facilities enabling us to inspect machined
-                  components with high accuracy and exactly match other assorted
-                  parts for your further assembly Our advantage lies in our
-                  ability to respond swiftly to customer requirements through
-                  our dynamic and versatile workforce. Our CNC production
-                  facility has the capacity to process batches from prototypes
-                  to automatic mass production. The latest manufacturing
-                  technology and techniques are employed to ensure all our
-                  products are supplied correct to drawing and on time.
-                </p>
-                <p>
-                  We deliver machined parts: Zero defects, complex, critical
-                  precision machined components and assemblies. We deliver our
-                  service: our professional know-how and lean systems reduce
-                  costs while improving quality and quick turnaround, and our
-                  outstanding engineers offer the technical backup in vacuum
-                  fields. We deliver solution: Strategic partnership with our
-                  suppliers streamlines production and ensures us provide one
-                  stop sourcing or turn-key project for all you needed with an
-                  extremely high on-time delivery rate.
-                </p>
-                <p>
-                  Our main CNC Equipments List – From Prototype to Production
-                </p>
-                <p>
-                  6 Sets of Mutiple- axis CNC Machining Centers <br />
-                  21 Sets of CNC Lathes <br />
-                  4 Sets of CNC Mills <br />
-                  2 Sets of Wire EDM Machines <br />
-                  2 Sets of Drilling Machines <br />
-                  10 Sets of Stamping Machines
-                </p>
-                <p>
-                  CNC Machining Capacities to 50 mm in Diameter Bar for Auto-
-                  Feeding and to 200mm in Diameter for Chucked
-                </p>
-              </div>
-            </div>
+        <div class="tag box-tag">
+          <p class="eng">PRODUCTS</p>
+          <p>产品中心</p>
+        </div>
+        <div class="product-box">
+          <ul class="nav-list">
+            <li
+              v-for="item in navList"
+              :key="item.id"
+              @click="changeNav(item)"
+              :class="[{ activeNav: activeNav == item.id }]"
+            >
+              {{ item.cnName }}
+            </li>
+          </ul>
+          <div class="product-content">
+            <product-detail v-if="hasDetail"
+              :detailData="detailData"
+              @goList="goList" />
+            <product-list  
+              v-else
+              :productList="productList"
+              @goDetail="goDetail"
+            />
           </div>
         </div>
-        <ul class="img-box">
-          <li><img src="./assets/img/1.jpg" alt="" /></li>
-          <li><img src="./assets/img/2.jpg" alt="" /></li>
-          <li><img src="./assets/img/3.jpg" alt="" /></li>
-          <li><img src="./assets/img/4.jpg" alt="" /></li>
-          <li><img src="./assets/img/5.jpg" alt="" /></li>
-          <li><img src="./assets/img/6.jpg" alt="" /></li>
-        </ul>
       </div>
     </div>
   </div>
 </template>
 <script>
+import ProductList from "./components/ProductList.vue";
+import ProductDetail from "./components/ProductDetail.vue";
 export default {
-  mixins: [],
-  data() {
-    return {};
+  components: {
+    ProductList,
+    ProductDetail
   },
-  computed: {},
+  data() {
+    return {
+      navList: [
+        {
+          id: 1,
+          cnName: "不锈钢加工件",
+          enName: "CNC Machined Steel Parts",
+          children: [
+            {
+              id: 1,
+              cnName: "电渣重熔316不锈钢加工件",
+              enName: "Electroslag Remelting 316SS Parts"
+            },
+            {
+              id: 2,
+              cnName: "304和316不锈钢加工件",
+              enName: "304SS and 316SS Machined Parts"
+            },
+            {
+              id: 3,
+              cnName: "真空法兰",
+              enName: "KF Flanges and CF Flanges"
+            },
+            {
+              id: 4,
+              cnName: "机加工接头",
+              enName: "Machined Terminals and Connectors"
+            },
+            {
+              id: 5,
+              cnName: "BNC和SHV接头外壳",
+              enName: "BNC & SHV Adapter Sockets"
+            },
+            {
+              id: 6,
+              cnName: "其它钢铁加工件",
+              enName: "Other Machined Steel Component"
+            }
+          ]
+        },
+        {
+          id: 2,
+          cnName: "可伐合金加工件",
+          enName: "CNC Machined Kovar Parts",
+          children: [
+            {
+              id: 1,
+              cnName: "可伐连接器",
+              enName: "Kovar Machined Adapters and Sockets"
+            },
+            {
+              id: 2,
+              cnName: "可伐插针",
+              enName: "Machined Kovar Terminal Pins"
+            },
+            {
+              id: 3,
+              cnName: "可伐连接针",
+              enName: "Machined Kovar Conatcts and Conductors"
+            },
+            {
+              id: 4,
+              cnName: "可伐端帽",
+              enName: "Machined Kovar Sleeves and Caps"
+            },
+            {
+              id: 5,
+              cnName: "可伐法兰",
+              enName: "Kovar Flanges and Rings"
+            },
+            {
+              id: 6,
+              cnName: "其它可伐加工件",
+              enName: "Other Machined Kovar Components"
+            }
+          ]
+        },
+        {
+          id: 3,
+          cnName: "英科镍加工件",
+          enName: "CNC Machined Inconel and Incoloy Parts",
+          children: [
+            {
+              id: 1,
+              cnName: "英科镍加工件",
+              enName: "Inconel Machined Parts"
+            },
+            {
+              id: 2,
+              cnName: "因科镍加工件",
+              enName: "IncoloyMachined Parts"
+            }
+          ]
+        },
+        {
+          id: 4,
+          cnName: "镍铝及镍铬加工件",
+          enName: "CNC Machined Chromel and Alumel Parts",
+          children: [
+            {
+              id: 1,
+              cnName: "镍铬插针",
+              enName: "Machined Chromel Terminal Pins"
+            },
+            {
+              id: 2,
+              cnName: "镍铬插针",
+              enName: "Machined Alumel Terminal Pins"
+            }
+          ]
+        },
+        {
+          id: 5,
+          cnName: "铜加工件",
+          enName: "CNC Machined Copper Parts",
+          children: [
+            {
+              id: 1,
+              cnName: "铍铜加工件",
+              enName: "Beryllium Copper Machined Parts"
+            },
+            {
+              id: 2,
+              cnName: "其他铜端子",
+              enName: "Machined Copper Ternimals and Connectors"
+            }
+          ]
+        },
+        {
+          id: 6,
+          cnName: "其他合金加工件",
+          enName: "Other CNC Machined Parts",
+          children: [
+            {
+              id: 1,
+              cnName: "蒙乃尔合金加工件",
+              enName: "Monel Machined Parts"
+            },
+            {
+              id: 2,
+              cnName: "哈氏合金加工件",
+              enName: "Hastelloy Machined Parts"
+            },
+            {
+              id: 3,
+              cnName: "因瓦合金加工件",
+              enName: "Invar Machined Parts"
+            },
+            {
+              id: 4,
+              cnName: "其它镍合金加工件",
+              enName: "Nickel Alloy Machined Parts"
+            },
+            {
+              id: 5,
+              cnName: "铝合金加工件",
+              enName: "Aluminum Alloy Machined Parts"
+            },
+            {
+              id: 6,
+              cnName: "钼合金加工件",
+              enName: "Molybdenum Machined Parts"
+            }
+          ]
+        },
+        {
+          id: 7,
+          cnName: "陶瓷金属封接件",
+          enName: "Ceramic to Metal Assemblies",
+          children: [
+            {
+              id: 1,
+              cnName: "各类封接件",
+              enName: "Ceramic to Metal Brazed Parts"
+            }
+          ]
+        }
+      ],
+      activeNav: 1,
+      // 是否在详情
+      hasDetail: false,
+      detailData: {}
+    };
+  },
+  computed: {
+    productList() {
+      let result = [];
+      let item = this.navList.find(val => val.id === this.activeNav);
+      if (item.children) {
+        result = item.children;
+      }
+      return result;
+    }
+  },
   created() {},
-  methods: {}
+  methods: {
+    // 切换nav
+    changeNav(item) {
+      this.activeNav = item.id;
+      this.goList();
+    },
+    // 查看资源详情
+    goDetail(item) {
+      console.log("item=-==", item);
+      this.detailData = item;
+      this.hasDetail = true;
+    },
+    // 返回列表
+    goList(){
+      this.hasDetail = false;
+      this.detailData = {};
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
+$color-main = #1493cf
 .box
   border-top 2px solid #6e6e6e
   .content
     padding 40px 24px 20px
-    .introduce
+    .product-box
       display flex
-    .introduce-detail
-      padding 136px 0 0 120px
-      flex 1
-      .detail-info
-        padding 20px 0 40px
-        p
-          line-height 2
-          font-size 16px
+      margin-top 30px
+      .nav-list
+        width 300px
+        li
+          font-size 18px
+          color #333
           margin-bottom 30px
-  .img-box
-    padding 100px 0 20px
-    display flex
-    flex-wrap wrap
-    li
-      padding 0 14px 14px 0
-      height 276px
-      &:first-child
-        width 33.3%
-      &:nth-child(2)
-        width 33.3%
-      &:nth-child(3)
-        width 33.3%
-      &:nth-child(4)
-        width 45%
-      &:nth-child(5)
-        width 21.6%
-      &:nth-child(6)
-        width 33.3%
-      img
-        width 100%
-        height 100%
-
+          cursor pointer
+          &:before
+            content ''
+            width 14px
+            height 14px
+            display inline-block
+            border-radius 1px
+            margin-right 16px
+        .activeNav
+          &:before
+            background $color-main
+      .product-content
+        flex 1
+        padding 10px 0 80px
+  .activeNav
+    color $color-main
 </style>
