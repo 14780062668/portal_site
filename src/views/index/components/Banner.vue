@@ -1,11 +1,11 @@
 <template>
   <div class="banner-box">
-    <a-carousel>
+    <a-carousel autoplay>
       <div class="item">
         <img src="../assets/img/banner-0.jpg" alt="" />
         <div class="text-box">
           <div class="info">
-            <p>Precision Machining Service autoplay</p>
+            <p>Precision Machining Service</p>
             <p>Professional Manufacturer for CNC Machined Parts</p>
           </div>
         </div>
@@ -34,41 +34,22 @@ export default {
     return {};
   },
   computed: {},
-  mounted() {
-    // let $box = document.querySelector(".banner-box");
-    // let outWidth = $box.offsetWidth;
-    // let $content = $box.querySelector(".content");
-    // let $list = $content.querySelectorAll(".list");
-    // let style = document.styleSheets;
-    // this.listStyle = {
-    //   width: `${outWidth}px`
-    // };
-    // let listLen = $list.length;
-    // let contentWidth = outWidth * listLen;
-    // this.contentStyle = {
-    //   width: `${contentWidth}px`,
-    //   animation: `run  2s linear infinite`
-    // };
-    // alert(outWidth);
-  },
   methods: {}
 };
 </script>
 <style lang="stylus" scoped>
-$bannerHeight = 500px
 .banner-box
-  margin-bottom 40px
+  margin-bottom 30px
   position relative
   overflow hidden
   width 100%
-  height $bannerHeight
   .text-box
     font-size 26px
     color #fff
     position absolute
     left 0
     right 0
-    top 180px
+    top 170px
     text-align left
     .info
       width 628px
@@ -79,14 +60,11 @@ $bannerHeight = 500px
 .ant-carousel >>> .slick-slide {
   text-align: center;
   width: 100%;
-  height: $bannerHeight;
-  background: #364d79;
   overflow: hidden;
   position: relative;
 }
 
 .ant-carousel >>> .slick-slide img {
   width: 100%;
-  height: $bannerHeight;
 }
 </style>

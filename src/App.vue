@@ -13,6 +13,9 @@ export default {
   components: {
     HeaderCom,
     FooterCom
+  },
+  created(){
+    document.title = '思豪科技';
   }
 }
 </script>

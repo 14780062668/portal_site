@@ -51,7 +51,7 @@ export default {
         {
           id: 2,
           name: "产品中心",
-          pathName: "about_me2"
+          pathName: "product"
         },
         {
           id: 3,
@@ -78,6 +78,9 @@ export default {
       switch (name) {
         case "about_me":
           result = 1;
+          break;
+        case "product":
+          result = 2;
           break;
         case "equipment":
           result = 3;
