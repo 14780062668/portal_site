@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <div class="img">
-      <img src="../assets/img/product-1.jpg" alt="" />
+      <img :src="detailData.imgUrl" alt="" />
     </div>
     <ul class="detail-info">
       <li><span class="tag">名称:</span>{{ detailData.cnName }}</li>

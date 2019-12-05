@@ -35,40 +35,12 @@
   </div>
 </template>
 <script>
+import mixins from '../mixins/index.js';
 export default {
-  mixins: [],
-  props: {},
-  components: {},
+  mixins: [mixins],
   data() {
     return {
-      languageVal: 1,
-      navList: [
-        {
-          id: 1,
-          name: "关于思豪",
-          pathName: "about_me"
-        },
-        {
-          id: 2,
-          name: "产品中心",
-          pathName: "product"
-        },
-        {
-          id: 3,
-          name: "生产设备",
-          pathName: "equipment"
-        },
-        {
-          id: 4,
-          name: "质量控制",
-          pathName: "quality_control"
-        },
-        {
-          id: 5,
-          name: "联系方式",
-          pathName: "contact_us"
-        }
-      ]
+      languageVal: 1
     };
   },
   computed: {
@@ -108,6 +80,7 @@ export default {
     // 切换语言
     changeLanguage(type) {
       this.languageVal = type;
+      this.$store.commit("changeLanguage", type);
     }
   }
 };

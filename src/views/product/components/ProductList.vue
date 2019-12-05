@@ -2,7 +2,7 @@
   <ul id="list-box">
     <li v-for="item in productList" :key="item.id" @click="goDetail(item)">
       <div class="img-box">
-        <img src="../assets/img/product-1.jpg" alt="">
+        <img :src="item.imgUrl" alt="">
         <div class="hover-text">
           <p>{{item.cnName}}</p>
           <p><i class="iconfont iconjia"></i></p>

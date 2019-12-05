@@ -14,26 +14,38 @@
           <p>产品中心</p>
         </div>
         <div class="product-box">
-          <ul class="nav-list">
-            <li
-              v-for="item in navList"
-              :key="item.id"
-              @click="changeNav(item)"
-              :class="[{ activeNav: activeNav == item.id }]"
-            >
-              {{ item.cnName }}
-            </li>
-          </ul>
-          <div class="product-content">
-            <product-detail v-if="hasDetail"
-              :detailData="detailData"
-              @goList="goList" />
-            <product-list  
-              v-else
-              :productList="productList"
-              @goDetail="goDetail"
-            />
-          </div>
+          <!--资源详情-->
+          <template v-if="hasDetail">
+            <ul class="nav-list">
+              <li
+                v-for="item in secondNavList"
+                :key="item.id"
+                @click="changeNav(2,item)"
+                :class="[{ activeNav: activeSecondNav == item.id }]"
+              >
+                {{ item.cnName }}
+              </li>
+            </ul>
+            <div class="product-content">
+              <product-detail :detailData="detailData" @goList="goList" />
+            </div>
+          </template>
+          <!--资源列表-->
+          <template v-else>
+            <ul class="nav-list">
+              <li
+                v-for="item in navList"
+                :key="item.id"
+                @click="changeNav(1,item)"
+                :class="[{ activeNav: activeNav == item.id }]"
+              >
+                {{ item.cnName }}
+              </li>
+            </ul>
+            <div class="product-content">
+              <product-list :productList="productList" @goDetail="goDetail" />
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -58,32 +70,38 @@ export default {
             {
               id: 1,
               cnName: "电渣重熔316不锈钢加工件",
-              enName: "Electroslag Remelting 316SS Parts"
+              enName: "Electroslag Remelting 316SS Parts",
+              imgUrl: require('./assets/product-img/1.jpg')
             },
             {
               id: 2,
               cnName: "304和316不锈钢加工件",
-              enName: "304SS and 316SS Machined Parts"
+              enName: "304SS and 316SS Machined Parts",
+              imgUrl: require('./assets/product-img/2.jpg')
             },
             {
               id: 3,
               cnName: "真空法兰",
-              enName: "KF Flanges and CF Flanges"
+              enName: "KF Flanges and CF Flanges",
+              imgUrl: require('./assets/product-img/3.jpg')
             },
             {
               id: 4,
               cnName: "机加工接头",
-              enName: "Machined Terminals and Connectors"
+              enName: "Machined Terminals and Connectors",
+              imgUrl: require('./assets/product-img/4.jpg')
             },
             {
               id: 5,
               cnName: "BNC和SHV接头外壳",
-              enName: "BNC & SHV Adapter Sockets"
+              enName: "BNC & SHV Adapter Sockets",
+              imgUrl: require('./assets/product-img/5.jpg')
             },
             {
               id: 6,
               cnName: "其它钢铁加工件",
-              enName: "Other Machined Steel Component"
+              enName: "Other Machined Steel Component",
+              imgUrl: require('./assets/product-img/6.jpg')
             }
           ]
         },
@@ -93,34 +111,40 @@ export default {
           enName: "CNC Machined Kovar Parts",
           children: [
             {
-              id: 1,
+              id: 7,
               cnName: "可伐连接器",
-              enName: "Kovar Machined Adapters and Sockets"
+              enName: "Kovar Machined Adapters and Sockets",
+              imgUrl: require('./assets/product-img/7.jpg')
             },
             {
-              id: 2,
+              id: 8,
               cnName: "可伐插针",
-              enName: "Machined Kovar Terminal Pins"
+              enName: "Machined Kovar Terminal Pins",
+              imgUrl: require('./assets/product-img/8.jpg')
             },
             {
-              id: 3,
+              id: 9,
               cnName: "可伐连接针",
-              enName: "Machined Kovar Conatcts and Conductors"
+              enName: "Machined Kovar Conatcts and Conductors",
+              imgUrl: require('./assets/product-img/9.jpg')
             },
             {
-              id: 4,
+              id: 10,
               cnName: "可伐端帽",
-              enName: "Machined Kovar Sleeves and Caps"
+              enName: "Machined Kovar Sleeves and Caps",
+              imgUrl: require('./assets/product-img/10.jpg')
             },
             {
-              id: 5,
+              id: 11,
               cnName: "可伐法兰",
-              enName: "Kovar Flanges and Rings"
+              enName: "Kovar Flanges and Rings",
+              imgUrl: require('./assets/product-img/11.jpg')
             },
             {
-              id: 6,
+              id: 12,
               cnName: "其它可伐加工件",
-              enName: "Other Machined Kovar Components"
+              enName: "Other Machined Kovar Components",
+              imgUrl: require('./assets/product-img/12.jpg')
             }
           ]
         },
@@ -130,14 +154,16 @@ export default {
           enName: "CNC Machined Inconel and Incoloy Parts",
           children: [
             {
-              id: 1,
+              id: 13,
               cnName: "英科镍加工件",
-              enName: "Inconel Machined Parts"
+              enName: "Inconel Machined Parts",
+              imgUrl: require('./assets/product-img/25.jpg')
             },
             {
-              id: 2,
+              id: 14,
               cnName: "因科镍加工件",
-              enName: "IncoloyMachined Parts"
+              enName: "IncoloyMachined Parts",
+              imgUrl: require('./assets/product-img/25.jpg')
             }
           ]
         },
@@ -147,14 +173,16 @@ export default {
           enName: "CNC Machined Chromel and Alumel Parts",
           children: [
             {
-              id: 1,
+              id: 15,
               cnName: "镍铬插针",
-              enName: "Machined Chromel Terminal Pins"
+              enName: "Machined Chromel Terminal Pins",
+              imgUrl: require('./assets/product-img/15.jpg')
             },
             {
-              id: 2,
+              id: 16,
               cnName: "镍铬插针",
-              enName: "Machined Alumel Terminal Pins"
+              enName: "Machined Alumel Terminal Pins",
+              imgUrl: require('./assets/product-img/16.jpg')
             }
           ]
         },
@@ -164,14 +192,16 @@ export default {
           enName: "CNC Machined Copper Parts",
           children: [
             {
-              id: 1,
+              id: 17,
               cnName: "铍铜加工件",
-              enName: "Beryllium Copper Machined Parts"
+              enName: "Beryllium Copper Machined Parts",
+              imgUrl: require('./assets/product-img/17.jpg')
             },
             {
-              id: 2,
+              id: 18,
               cnName: "其他铜端子",
-              enName: "Machined Copper Ternimals and Connectors"
+              enName: "Machined Copper Ternimals and Connectors",
+              imgUrl: require('./assets/product-img/18.jpg')
             }
           ]
         },
@@ -181,34 +211,40 @@ export default {
           enName: "Other CNC Machined Parts",
           children: [
             {
-              id: 1,
+              id: 19,
               cnName: "蒙乃尔合金加工件",
-              enName: "Monel Machined Parts"
+              enName: "Monel Machined Parts",
+              imgUrl: require('./assets/product-img/19.jpg')
             },
             {
-              id: 2,
+              id: 20,
               cnName: "哈氏合金加工件",
-              enName: "Hastelloy Machined Parts"
+              enName: "Hastelloy Machined Parts",
+              imgUrl: require('./assets/product-img/25.jpg')
             },
             {
-              id: 3,
+              id: 21,
               cnName: "因瓦合金加工件",
-              enName: "Invar Machined Parts"
+              enName: "Invar Machined Parts",
+              imgUrl: require('./assets/product-img/25.jpg')
             },
             {
-              id: 4,
+              id: 22,
               cnName: "其它镍合金加工件",
-              enName: "Nickel Alloy Machined Parts"
+              enName: "Nickel Alloy Machined Parts",
+              imgUrl: require('./assets/product-img/22.jpg')
             },
             {
-              id: 5,
+              id: 23,
               cnName: "铝合金加工件",
-              enName: "Aluminum Alloy Machined Parts"
+              enName: "Aluminum Alloy Machined Parts",
+              imgUrl: require('./assets/product-img/23.jpg')
             },
             {
-              id: 6,
+              id: 24,
               cnName: "钼合金加工件",
-              enName: "Molybdenum Machined Parts"
+              enName: "Molybdenum Machined Parts",
+              imgUrl: require('./assets/product-img/25.jpg')
             }
           ]
         },
@@ -218,14 +254,17 @@ export default {
           enName: "Ceramic to Metal Assemblies",
           children: [
             {
-              id: 1,
+              id: 25,
               cnName: "各类封接件",
-              enName: "Ceramic to Metal Brazed Parts"
+              enName: "Ceramic to Metal Brazed Parts",
+              imgUrl: require('./assets/product-img/25.jpg')
             }
           ]
         }
       ],
       activeNav: 1,
+      activeSecondNav: 0,
+      secondNavList: [],
       // 是否在详情
       hasDetail: false,
       detailData: {}
@@ -244,18 +283,27 @@ export default {
   created() {},
   methods: {
     // 切换nav
-    changeNav(item) {
-      this.activeNav = item.id;
-      this.goList();
+    // type: 1.一级目录  2.2级目录
+    changeNav(type,item) {
+      if(type === 1){        
+        this.activeNav = item.id;
+        this.secondNavList = item.children;
+       // this.goList();
+      }else{
+        this.goDetail(item);
+      }
     },
     // 查看资源详情
     goDetail(item) {
       console.log("item=-==", item);
+      let itemList = this.navList.find(val => val.id === this.activeNav);
+      this.secondNavList = itemList.children;
+      this.activeSecondNav = item.id;
       this.detailData = item;
       this.hasDetail = true;
     },
     // 返回列表
-    goList(){
+    goList() {
       this.hasDetail = false;
       this.detailData = {};
     }

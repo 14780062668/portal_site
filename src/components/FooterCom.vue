@@ -28,20 +28,21 @@
         <p class="cn-name">余姚市思豪真空科技有限公司</p>
       </div>
       <div class="nav">
-        <a href="javascript:void(0)">关于思豪</a>
-        <a href="javascript:void(0)">产品中心</a>
+        <router-link v-for="item in navList" :key="item.id" :to="{
+          path: item.pathName
+        }">{{item.name}}</router-link>
+        <!-- <a href="javascript:void(0)">产品中心</a>
         <a href="javascript:void(0)">生产设备</a>
         <a href="javascript:void(0)">质量控制</a>
-        <a href="javascript:void(0)">联系我们</a>
+        <a href="javascript:void(0)">联系我们</a> -->
       </div>
     </div>
   </footer>
 </template>
 <script>
+import mixins from '../mixins/index.js';
 export default {
-  mixins: [],
-  props: {},
-  components: {},
+  mixins: [mixins],
   data() {
     return {};
   },
