@@ -8,10 +8,10 @@
       <div v-if="languageType == 1" class="info-message">
         <p class="info-base">
           <i class="iconfont icondianhua"></i>
-          <span class="tag">电话：0574-62676122</span>
-          <span class="tag">传真： 0574-62676802</span>
-          <span class="tag">联系人：周泉君</span>
-          <span class="tag">手 机：13335844026</span>
+          <span class="tag">电话: 0574-62676122</span>
+          <span class="tag">传真: 0574-62676802</span>
+          <span class="tag">联系人: 周泉君</span>
+          <span class="tag">手 机: 13335844026</span>
           <i class="iconfont iconyouxiang email-icon"></i>
           <span class="tag">tony@fine-boon.com</span>
         </p>
@@ -23,17 +23,17 @@
       <div v-else class="info-message info-en">
         <p class="info-base">
           <i class="iconfont icondianhua"></i>
-          <span class="tag">tel： +86-574-62676122</span>
-          <span class="tag">Fax： 0574-62676802</span>
-          <span class="tag">Contact：Tony Liu</span>
-          <span class="tag">Mobile：13335844026</span>
+          <span class="tag">tel: +86-574-62676122</span>
+          <span class="tag">Fax: 0574-62676802</span>
+          <span class="tag">Contact: Tony Liu</span>
+          <span class="tag">Mobile: 13335844026</span>
           <i class="iconfont iconyouxiang email-icon"></i>
-          <span class="tag">Mail：tony@fine-boon.com</span>
+          <span class="tag">Mail: tony@fine-boon.com</span>
         </p>
         <p class="info-adress">
           <i class="iconfont icondizhi"></i>
           <span class="tag"
-            >Factory Address：No.86 XIANCHENDU, JIULEISHAN VILLAGE, FENGSHAN
+            >Factory Address: No.86 XIANCHENDU, JIULEISHAN VILLAGE, FENGSHAN
             TOWN, YUYAO CITY, ZHEJIANG PROVINCE, P.R.CHINA</span
           >
         </p>

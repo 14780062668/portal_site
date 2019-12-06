@@ -16,7 +16,7 @@
           </div>
           <div class="introduce-detail">
             <div class="detail-info">
-              <div class="text">
+              <div class="text" v-if="languageType==1">
                 <div class="info-name">
                   <h2 class="cn-name">余姚市思豪真空科技有限公司</h2>
                   <p>YUYAO SEEHAO VACUUM TECHNOLOGY CO.LTD</p>
@@ -43,6 +43,34 @@
                   </div>
                 </div>
               </div>
+              <div class="text" v-else>
+                <div class="info-name">
+                  <h2 class="cn-name">余姚市思豪真空科技有限公司</h2>
+                  <p>YUYAO SEEHAO VACUUM TECHNOLOGY CO.LTD</p>
+                </div>
+                <div class="info-message">
+                  <div class="tag-line">
+                    <span class="tag">Factory Address:</span>
+                    No.86 XIANCHENDU, JIULEISHAN VILLAGE, FENGSHAN
+            TOWN, YUYAO CITY, ZHEJIANG PROVINCE, P.R.CHINA
+                  </div>
+                  <div class="tag-line">
+                    <span class="tag">tel:</span>
+                    +86-574-62676122
+                    <span class="tag" style="margin-left:14px;">Fax:</span>
+                    0574-62676802
+                  </div>
+                  <div class="tag-line">
+                    <span class="tag">Contact:</span>Tony Liu
+                  </div>
+                  <div class="tag-line">
+                    <span class="tag">Mobile:</span>13335844026
+                  </div>
+                  <div class="tag-line">
+                    <span class="tag">Mail:</span>tony@fine-boon.com
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -53,7 +81,9 @@
 </template>
 <script>
 import AreaMap from '../../components/AreaMap.vue';
+import mixins from '../../mixins/index.js';
 export default {
+  mixins: [mixins],
   components: {
     AreaMap
   },
@@ -76,7 +106,7 @@ export default {
       padding 136px 0 0 120px
       flex 1
       .detail-info
-        padding 20px 0 40px 80px
+        padding 20px 0 40px 0
         .info-name
           margin-bottom 60px
           h2
