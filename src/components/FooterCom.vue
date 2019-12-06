@@ -2,7 +2,7 @@
   <footer class="footer-box">
     <div class="home-tit">
       <i class="iconfont iconxiaoxi1"></i>
-      联系我们
+      {{ homeName }}
     </div>
     <div class="my-info">
       <div v-if="languageType == 1" class="info-message">
@@ -12,14 +12,13 @@
           <span class="tag">传真： 0574-62676802</span>
           <span class="tag">联系人：周泉君</span>
           <span class="tag">手 机：13335844026</span>
+          <i class="iconfont iconyouxiang email-icon"></i>
+          <span class="tag">tony@fine-boon.com</span>
         </p>
         <p class="info-adress">
           <i class="iconfont icondizhi"></i>
           <span class="tag">地址：浙江省余姚市凤山街道九垒山村下陈渡86号</span>
-          <i class="iconfont iconyouxiang email-icon"></i>
-          <span class="tag">tony@fine-boon.com</span>
         </p>
-        
       </div>
       <div v-else class="info-message info-en">
         <p class="info-base">
@@ -28,6 +27,8 @@
           <span class="tag">Fax： 0574-62676802</span>
           <span class="tag">Contact：Tony Liu</span>
           <span class="tag">Mobile：13335844026</span>
+          <i class="iconfont iconyouxiang email-icon"></i>
+          <span class="tag">Mail：tony@fine-boon.com</span>
         </p>
         <p class="info-adress">
           <i class="iconfont icondizhi"></i>
@@ -35,10 +36,6 @@
             >Factory Address：No.86 XIANCHENDU, JIULEISHAN VILLAGE, FENGSHAN
             TOWN, YUYAO CITY, ZHEJIANG PROVINCE, P.R.CHINA</span
           >
-        </p>
-        <p class="email">
-          <i class="iconfont iconyouxiang email-icon"></i>
-          <span class="tag">Mail：tony@fine-boon.com</span>
         </p>
       </div>
     </div>
@@ -65,10 +62,14 @@
 import mixins from "../mixins/index.js";
 export default {
   mixins: [mixins],
+  computed: {
+    homeName() {
+      return this.languageType == 1 ? "联系我们" : "ABOUT US";
+    }
+  },
   data() {
     return {};
   },
-  computed: {},
   created() {},
   methods: {}
 };
