@@ -19,51 +19,81 @@ export default new Router({
       name: "homePage",
       redirect: '/index',
       component: () => import('@/views/index/Index.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: "/index",
       name: "Index",
       component: () => import('@/views/index/Index.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: "/index_info",
       name: "index_info",
       component: () => import('@/views/index/Info.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: "/about_me",
       name: "about_me",
       component: () => import('@/views/aboutMe/Index.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: "/product",
       name: "product",
       component: () => import('@/views/product/Index.vue'),
+      meta: {
+        keepAlive: false
+      }
     },
     {
       path: "/equipment",
       name: "equipment",
       component: () => import('@/views/equipment/Index.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: "/quality_control",
       name: "quality_control",
       component: () => import('@/views/qualityControl/Index.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: "/contact_us",
       name: "contact_us",
       component: () => import('@/views/contact/Index.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/demo',
       name: 'Demo',
       component: () => import('@/views/Demo.vue'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '*',
       name: 'NoRoute',
-      component: () => import('@/views/index/Index.vue')
+      component: () => import('@/views/index/Index.vue'),
+      meta: {
+        keepAlive: true
+      }
     }
   ]
 });
