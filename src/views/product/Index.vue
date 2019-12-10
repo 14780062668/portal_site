@@ -280,8 +280,27 @@ export default {
       return result;
     }
   },
-  created() {},
+  mounted() {
+    // 产品id
+    let {id} = this.$route.query;
+    this.productDetail(id);
+  },
   methods: {
+    // 产品详情
+    productDetail(id){
+      if(!id) return false;
+      for(let item of this.navList){
+        for(let todo of item.children){
+          if(todo.id==id) {
+            this.activeNav = item.id;
+            this.secondNavList = item.children;
+            this.activeSecondNav = id;
+            this.hasDetail = true;
+            this.detailData = todo;
+          }
+        }
+      }
+    },
     // 切换nav
     // type: 1.一级目录  2.2级目录
     changeNav(type,item) {

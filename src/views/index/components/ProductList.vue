@@ -1,10 +1,10 @@
 <template>
   <ul id="list-box">
-    <li v-for="item in 6" :key="item">
+    <li v-for="item in list" :key="item.id" @click="goProduct(item)">
       <div class="img-box">
-        <img src="../../../assets/img/index-product.jpg" alt="">
+        <img :src="item.imgUrl" alt="" />
         <div class="hover-text">
-          <p>可伐合金加工件</p>
+          <p>{{ item.name }}</p>
           <p><i class="iconfont iconjia"></i></p>
         </div>
       </div>
@@ -12,17 +12,74 @@
   </ul>
 </template>
 <script>
+import mixins from "../../../mixins/index.js";
 export default {
-  props: {
-
-  },
-  components: {},
+  mixins: [mixins],
   data() {
     return {
+      listData: [
+        {
+          id: 3,
+          cnName: "真空法兰",
+          enName: "KF Flanges and CF Flanges",
+          imgUrl: require("../assets/product/2.jpg")
+        },
+        {
+          id: 5,
+          cnName: "BNC和SHV接头外壳",
+          enName: "BNC & SHV Adapter and Sockets",
+          imgUrl: require("../assets/product/1.jpg")
+        },
+        {
+          id: 7,
+          cnName: "可伐连接器",
+          enName: "Kovar Machined Adapters and headers",
+          imgUrl: require("../assets/product/3.jpg")
+        },
+        {
+          id: 9,
+          cnName: "可伐连接针",
+          enName: "Machined Kovar Conatcts and Conductors",
+          imgUrl: require("../assets/product/5.jpg")
+        },
+        {
+          id: 18,
+          cnName: "其他铜端子",
+          enName: "Machined Copper Ternimals and Connectors",
+          imgUrl: require("../assets/product/4.jpg")
+        },
+        {
+          id: 19,
+          cnName: "蒙乃尔合金加工件",
+          enName: "Monel Machined Parts",
+          imgUrl: require("../assets/product/6.jpg")
+        }
+      ]
     };
   },
-  computed: {},
-  methods: {}
+  computed: {
+    list() {
+      return this.listData.map(val => {
+        return {
+          id: val.id,
+          name: this.languageType == 1 ? val.cnName : val.enName,
+          imgUrl: val.imgUrl
+        };
+      });
+    }
+  },
+  methods: {
+    // 到产品详情
+    goProduct(item){
+      console.log('item==', item);
+      this.$router.push({
+        path: 'product',
+        query: {
+          id: item.id
+        }
+      })
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
@@ -61,7 +118,7 @@ li
         text-align center
         i
           font-size 40px
-          font-weight 700 
+          font-weight 700
   &:hover
     .img-box
       img
