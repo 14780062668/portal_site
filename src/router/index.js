@@ -80,6 +80,14 @@ export default new Router({
       }
     },
     {
+      path: "/edit",
+      name: "edit",
+      component: () => import('@/views/edit/Index.vue'),
+      meta: {
+        keepAlive: false
+      }
+    },
+    {
       path: '/demo',
       name: 'Demo',
       component: () => import('@/views/Demo.vue'),

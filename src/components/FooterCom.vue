@@ -17,7 +17,7 @@
         </p>
         <p class="info-adress">
           <i class="iconfont icondizhi"></i>
-          <span class="tag">地址：浙江省余姚市凤山街道九垒山村下陈渡86号</span>
+          <span class="tag">地址: 浙江省余姚市凤山街道九垒山村下陈渡86号</span>
         </p>
       </div>
       <div v-else class="info-message info-en">

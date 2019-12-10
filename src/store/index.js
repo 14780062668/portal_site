@@ -35,8 +35,14 @@ const store = new Vuex.Store({
       {
         id: 5,
         cnName: "联系方式",
-        enName: " Contact Us",
+        enName: "Contact Us",
         pathName: "contact_us"
+      },
+      {
+        id: 6,
+        cnName: "edit",
+        enName: "edit",
+        pathName: "edit"
       }
     ]
   },

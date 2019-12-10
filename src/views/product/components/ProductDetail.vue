@@ -57,19 +57,4 @@ export default {
       margin-bottom 26px
       .tag
         margin-right 10px
-  .btn-box
-    text-align center
-    .btn
-      display inline-block
-      background #1493cf
-      color #ffffff
-      font-size 18px
-      width 260px
-      text-align center
-      line-height 54px
-      letter-spacing 16px
-      border-radius 4px
-      cursor pointer
-      &:hover
-        opacity 0.8
 </style>
