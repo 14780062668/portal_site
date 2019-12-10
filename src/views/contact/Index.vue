@@ -19,7 +19,6 @@
               <div class="text" v-if="languageType==1">
                 <div class="info-name">
                   <h2 class="cn-name">余姚市思豪真空科技有限公司</h2>
-                  <p>YUYAO SEEHAO VACUUM TECHNOLOGY CO.LTD</p>
                 </div>
                 <div class="info-message">
                   <div class="tag-line">
@@ -45,8 +44,7 @@
               </div>
               <div class="text" v-else>
                 <div class="info-name">
-                  <h2 class="cn-name">余姚市思豪真空科技有限公司</h2>
-                  <p>YUYAO SEEHAO VACUUM TECHNOLOGY CO.LTD</p>
+                  <h2 class="en-name">YUYAO SEEHAO VACUUM TECHNOLOGY CO.LTD</h2>
                 </div>
                 <div class="info-message">
                   <div class="tag-line">
@@ -112,12 +110,13 @@ export default {
           h2
             color #1493cf
             margin-bottom 0
+            font-weight 400
+          .cn-name
             font-size 50px
             line-height 54px
-            font-weight 400
-          p
-           color #1493cf
-           font-size 27px
+          .en-name
+            font-size 36px
+            line-height 40px
         .info-message
           .tag-line
             font-size 28px

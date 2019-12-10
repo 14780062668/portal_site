@@ -38,12 +38,12 @@ const store = new Vuex.Store({
         enName: "Contact Us",
         pathName: "contact_us"
       },
-      {
-        id: 6,
-        cnName: "edit",
-        enName: "edit",
-        pathName: "edit"
-      }
+      // {
+      //   id: 6,
+      //   cnName: "edit",
+      //   enName: "edit",
+      //   pathName: "edit"
+      // }
     ]
   },
   mutations: {
