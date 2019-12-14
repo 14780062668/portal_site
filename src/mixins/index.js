@@ -8,7 +8,9 @@ export default {
     }),
     ...mapGetters({
       // 主导航
-      navList: "navList"
+      navList: "navList",
+      // 全部导航
+      initNavList: 'initNavList'
     })
   },
   methods: {

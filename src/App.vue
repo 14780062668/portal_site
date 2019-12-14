@@ -5,7 +5,6 @@
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"></router-view>
-    <!-- <router-view/> -->
     <footer-com></footer-com>
   </div>
 </template>
@@ -18,8 +17,23 @@ export default {
     HeaderCom,
     FooterCom
   },
-  created() {
+  beforeCreate() {
+    // 设置title
     document.title = "思豪科技";
+  },
+  created() {
+    // 查询菜单
+    // this.$ajax
+    //   .get(`content/query_attachment_by_menu_id?menuId=${1}`)
+    //   .then(data => {
+    //     console.log("res===", data);
+    //   });
+    // // 查询菜单详情
+    // this.$ajax.get(`content/query_menu_info`).then(({ data }) => {
+    //   console.log("res===", data);
+    // });
+
+    //query_menu_info
   }
 };
 </script>

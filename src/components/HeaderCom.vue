@@ -12,7 +12,7 @@
           tag="span"
           v-for="item in navList"
           :key="item.id"
-          :class="[{ activeNav: active == item.id }]"
+          :class="[{ activeNav: active == item.sort }]"
           :to="{
             path: item.pathName
           }"
@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import mixins from '../mixins/index.js';
+import mixins from "../mixins/index.js";
 export default {
   mixins: [mixins],
   data() {
@@ -44,12 +44,13 @@ export default {
     };
   },
   computed: {
+    // 导航sort
     active() {
       let result = 0;
       let { name } = this.$route;
       switch (name) {
         case "about_me":
-          result = 1;
+          result = 6;
           break;
         case "product":
           result = 2;
@@ -63,8 +64,11 @@ export default {
         case "contact_us":
           result = 5;
           break;
+        case "edit":
+          result = 1000;
+          break;
         default:
-          result = 0;
+          result = 1;
       }
       return result;
     }

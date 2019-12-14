@@ -3,11 +3,14 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-import { Carousel } from "ant-design-vue";
+import { Carousel,Input, Select } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import store from "./store/index.js";
+import instance from "./util/axios.js";
 
 Vue.use(Carousel);
+Vue.use(Input);
+Vue.use(Select);
 Vue.config.productionTip = false;
 
 // 引入地图
@@ -19,6 +22,9 @@ Vue.use(BaiduMap, {
 
 // 引入css
 import "./assets/style/default.styl";
+
+//将axios挂载到Vue的原型上
+Vue.prototype.$ajax = instance;
 
 /* eslint-disable no-new */
 new Vue({
