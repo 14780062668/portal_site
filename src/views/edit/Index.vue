@@ -46,7 +46,7 @@
         确定修改
       </span>
     </div>
-    <upload />
+    <!-- <upload /> -->
   </div>
 </template>
 <script>
@@ -173,12 +173,13 @@ export default {
       width 220px
       text-align right
     .btn
-      font-size 20px
-      color #333
-      padding 2px 20px
+      font-size 18px
+      color #666
+      padding 0 20px
       border 1px solid #d9d9d9
+      line-height 40px
       margin-right 10px
-      border-radius 30px
+      border-radius 4px
       cursor pointer
       &:hover
         color #ffffff
