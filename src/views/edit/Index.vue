@@ -4,17 +4,20 @@
       <ul>
         <li class="line">
           <span class="tag">编辑菜单:</span>
-          <a-select v-model="menuValue" size="large" @change="handleChangeMenu">
-            <a-select-option v-for="item in initNavList" :key="item.sort">{{
-              item.name
+          <span v-for="item in editNavList"
+            :class="['btn', {'active-btn':item.sort==menuValue}]"
+            :key="item.sort" @click="handleChangeMenu(item.sort)">{{item.cnName}}</span>
+          <!-- <a-select v-model="menuValue" size="large" @change="handleChangeMenu">
+            <a-select-option v-for="item in editNavList" :key="item.sort">{{
+              item.cnName
             }}</a-select-option>
-          </a-select>
+          </a-select> -->
         </li>
-        <li class="line">
+        <!-- <li class="line">
           <span class="tag">别名(中文):</span>
           <a-input
             v-model="aliseCnName"
-            placeholder="请输入别名"
+            placeholder="请输入别名(中文)"
             size="large"
           />
         </li>
@@ -22,10 +25,20 @@
           <span class="tag">别名(英文):</span>
           <a-input
             v-model="aliseEnName"
-            placeholder="请输入别名"
+            placeholder="请输入别名(英文)"
             size="large"
           />
-        </li>
+        </li> -->
+        <template v-if="[1,3, 4, 6].includes(menuValue)">
+          <li class="line">
+            <span class="tag">内容(中文):</span>
+            <wangeditor ref="cnContent" />
+          </li>
+          <li class="line">
+            <span class="tag">内容(英文):</span>
+            <wangeditor ref="enContent" />
+          </li>
+        </template>
       </ul>
     </div>
     <div class="btn-box">
@@ -34,7 +47,6 @@
       </span>
     </div>
     <upload />
-    <!-- <wangeditor /> -->
   </div>
 </template>
 <script>
@@ -50,16 +62,12 @@ export default {
   data() {
     return {
       // 默认首页
-      menuValue: 1,
-      // 别名
-      aliseCnName: "",
-      aliseEnName: ""
+      menuValue: 1
     };
   },
   computed: {},
   created() {
     this.queryMenuContent();
-
   },
   methods: {
     // 查询菜单详情
@@ -81,30 +89,70 @@ export default {
       let index = this.initNavList.findIndex(
         val => val.sort === this.menuValue
       );
-      console.log("index==", index);
+      console.log("index==", index, this.initNavList[index]);
       if (index == -1) return false;
-      let param = {
-        alias: this.aliseCnName,
-        context: null,
-        id: this.menuValue,
-        name: this.initNavList[index].name
-      };
-      this.$ajax.post(`content/update_menu_info`, param).then(({ data }) => {
-        console.log("res===", data);
-      });
+      let listItem = this.initNavList[index];
+      switch (this.menuValue) {
+        case 1:
+        case 3:
+        case 4:
+        case 6:
+          let cnContent = this.$refs.cnContent.getContent();
+          let enContent = this.$refs.enContent.getContent();
+          if (!cnContent) {
+            return false;
+          }
+          if (!enContent) {
+            return false;
+          }
+          // 中文编辑
+          this.$ajax
+            .post(`content/update_menu_info`, {
+              alias: this.cnName,
+              context: cnContent,
+              id: listItem.cnId,
+              name: listItem.name
+            })
+            .then(({ data }) => {
+              console.log("res===", data);
+            });
+          // 英文文编辑
+          this.$ajax
+            .post(`content/update_menu_info`, {
+              alias: this.enName,
+              context: enContent,
+              id: listItem.enId,
+              name: listItem.enName
+            })
+            .then(({ data }) => {
+              console.log("res===", data);
+            });
+          break;
+        default:
+          // 只修改别名  this.menuValue=5
+          this.$ajax
+            .post(`content/update_menu_info`, {
+              alias: this.aliseCnName,
+              context: "",
+              id: listItem.cnId,
+              name: listItem.name
+            })
+            .then(({ data }) => {
+              console.log("res===", data);
+            });
+          this.$ajax
+            .post(`content/update_menu_info`, {
+              alias: this.aliseEnName,
+              context: "",
+              id: listItem.enId,
+              name: listItem.name
+            })
+            .then(({ data }) => {
+              console.log("res===", data);
+            });
+      }
 
       console.log("编辑==", this.param);
-      // 更新菜单
-      // this.$ajax
-      //   .post(`content/update_menu_info`, {
-      //     alias: "222",
-      //     context: "w w",
-      //     id: 1,
-      //     name: "首页"
-      //   })
-      //   .then(({ data }) => {
-      //     console.log("res===", data);
-      //   });
     }
   }
 };
@@ -113,19 +161,37 @@ export default {
 .box
   margin-top 40px
   ul
-    width 800px
+    width 860px
     margin 80px auto 100px
   li
     display flex
-    margin-bottom 30px
+    margin-bottom 40px
     .tag
-      font-size 26px
+      font-size 24px
       color #333
       padding-right 20px
-      width 180px
+      width 220px
       text-align right
+    .btn
+      font-size 20px
+      color #333
+      padding 2px 20px
+      border 1px solid #d9d9d9
+      margin-right 10px
+      border-radius 30px
+      cursor pointer
+      &:hover
+        color #ffffff
+        background #1493cf
+        border-color #1493cf
+    .active-btn
+      color #ffffff
+      background #1493cf
+      border-color #1493cf
     .ant-input
-      width calc(100% - 200px)
+      flex 1
     .ant-select
-      width calc(100% - 200px)
+      flex 1
+    .editor-box
+      flex 1
 </style>

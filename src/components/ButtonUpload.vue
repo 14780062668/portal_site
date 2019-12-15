@@ -3,14 +3,20 @@
     <a-upload
       name="file"
       :accept="accept"
-      :multiple="true"
+      :action="action"
       :headers="headers"
       @change="handleChange"
       @beforeUpload="beforeUpload"
-      @customRequest="customRequest"
     >
       Click to Upload
     </a-upload>
+    <!-- <a-upload
+      name="file"
+      action="//jsonplaceholder.typicode.com/posts/"
+      @change="handleChange"
+    >
+      <span>Click to Upload</span>
+    </a-upload> -->
   </div>
 </template>
 <script>
@@ -25,11 +31,12 @@ export default {
     return {
       accept: "",
       //action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-      action: "https://jianghuxiami.oss-us-east-1.aliyuncs.com",
+      action: "http://jianghuxiami.oss-us-east-1.aliyuncs.com",
       headers: {
         authorization: "authorization-text",
         OSSAccessKeyId: "LTAI4Fd5rBAXJD1ph8ou8BD6",
-        "x-oss-security-token": ""
+        AccessKeySecret: "ZMtW6iqNtIfJt9P2pk7gpxeiUR6ELi"
+        //"x-oss-security-token": ""
       },
       ossParams: {
         OSSAccessKeyId: "LTAI4Fd5rBAXJD1ph8ou8BD6",
@@ -56,11 +63,10 @@ export default {
       formData.append("success_action_status", 200);
       // formData.append('policy', data['policy']);
       formData.append("OSSAccessKeyId", ossParams.OSSAccessKeyId);
-      formData.append("signature", data["signature"]);
-      formData.append("x-oss-security-token", data["sts_token"]);
-      formData.append("key", key);
-      formData.append("file", file);
-      formData.append("file", data.file);
+      //formData.append("signature", data["signature"]);
+      // formData.append("x-oss-security-token", data["sts_token"]);
+      //formData.append("key", key);
+      formData.append("file", formData);
 
       // formData.append("token", "aiufpaidfupipiu"); //随便写一个token示例
       this.saveFile(formData);
@@ -83,6 +89,17 @@ export default {
     // 开始上传
     beforeUpload(item, val) {
       console.log("item==", item, val);
+    },
+    handleChange2(info) {
+       console.log(info.file, info.fileList);
+      if (info.file.status !== "uploading") {
+        console.log(info);
+      }
+      if (info.file.status === "done") {
+        this.$message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === "error") {
+        this.$message.error(`${info.file.name} file upload failed.`);
+      }
     },
     // 上传进度变化
     handleChange({ file, fileList }) {

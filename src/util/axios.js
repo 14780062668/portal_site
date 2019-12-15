@@ -7,7 +7,7 @@ const instance = axios.create({
   //请求接口
   baseURL: config.dev.baseUrl,
   //超时设置
-  timeout: 8000,
+  timeout: 30000,
   //请求头设置
   headers: {
     accept: "application/json",

@@ -4,7 +4,7 @@
       <div class="img-box">
         <img :src="item.imgUrl" alt="">
         <div class="hover-text">
-          <p>{{item.cnName}}</p>
+          <p>{{ languageType==1?item.cnName:item.enName }}</p>
           <p><i class="iconfont iconjia"></i></p>
         </div>
       </div>
@@ -12,7 +12,9 @@
   </ul>
 </template>
 <script>
+import mixins from '../../../mixins/index.js';
 export default {
+  mixins: [mixins],
   props: {
     productList: {
       type: Array,
@@ -42,7 +44,7 @@ li
   border-radius 2px
   padding 36px
   cursor pointer
-  margin 0 0 80px 80px
+  margin 0 0 60px 60px
   .img-box
     width 260px
     height 260px

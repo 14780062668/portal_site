@@ -3,21 +3,53 @@
     <div class="img">
       <img :src="detailData.imgUrl" alt="" />
     </div>
-    <ul class="detail-info">
-      <li><span class="tag">名称:</span>{{ detailData.cnName }}</li>
-      <li><span class="tag">材质:</span>{{ detailData.cnName }}</li>
-      <li><span class="tag">特点:</span>{{ detailData.cnName }}</li>
-      <li><span class="tag">应用:</span>{{ detailData.cnName }}</li>
+    <ul class="detail-info" v-if="languageType == 1">
+      <li>
+        <span class="tag">名称:</span
+        >{{ detailData.cnName}}
+      </li>
+      <li>
+        <span class="tag">材质:</span
+        >{{ detailData.cnName }}
+      </li>
+      <li>
+        <span class="tag">特点:</span
+        >{{ detailData.cnName }}
+      </li>
+      <li>
+        <span class="tag">应用:</span
+        >{{ detailData.cnName }}
+      </li>
+    </ul>
+    <ul class="detail-info" v-else>
+      <li>
+        <span class="tag">Name:</span
+        >{{ detailData.enName }}
+      </li>
+      <li>
+        <span class="tag">Texture of material:</span
+        >{{ detailData.enName }}
+      </li>
+      <li>
+        <span class="tag">Characteristic:</span
+        >{{ detailData.enName }}
+      </li>
+      <li>
+        <span class="tag">Application:</span
+        >{{ detailData.enName }}
+      </li>
     </ul>
     <div class="btn-box">
       <span class="btn" @click="goList">
-        返回列表
+        {{ goBackName }}
       </span>
     </div>
   </div>
 </template>
 <script>
+import mixins from "../../../mixins/index.js";
 export default {
+  mixins: [mixins],
   props: {
     detailData: {
       type: Object,
@@ -28,12 +60,16 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    goBackName() {
+      return this.languageType == 1 ? "返回列表" : "Return List";
+    }
+  },
   created() {},
   methods: {
     // 返回列表
-    goList(){
-      this.$emit('goList');
+    goList() {
+      this.$emit("goList");
     }
   }
 };

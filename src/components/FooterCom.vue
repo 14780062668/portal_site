@@ -23,12 +23,12 @@
       <div v-else class="info-message info-en">
         <p class="info-base">
           <i class="iconfont icondianhua"></i>
-          <span class="tag">tel: +86-574-62676122</span>
+          <span class="tag">Tel: +86-574-62676122</span>
           <span class="tag">Fax: 0574-62676802</span>
           <span class="tag">Contact: Tony Liu</span>
           <span class="tag">Mobile: 13335844026</span>
           <i class="iconfont iconyouxiang email-icon"></i>
-          <span class="tag">Mail: tony@fine-boon.com</span>
+          <span class="tag">Email: tony@fine-boon.com</span>
         </p>
         <p class="info-adress">
           <i class="iconfont icondizhi"></i>

@@ -15,61 +15,56 @@
             <p>关于我们</p>
           </div>
           <div class="introduce-detail">
-            <h4>公 司 介 绍</h4>
+            <h4>{{tagName.name1}}</h4>
             <div class="detail-info">
               <div class="imgs">
                 <img src="../../assets/img/index-1.jpg" alt="" />
                 <img src="../../assets/img/index-2.jpg" alt="" />
               </div>
-              <div class="text">
-                <p>
-                  余姚市思豪真空科技有限公司是一家集科、工、贸为一体的机械加工企业。我司于2004年初创，
-                  专业加工各类特种合金精密零配件，产品主要用于各类真空成套设备及检测仪器。
-                  经过十多年的拼搏，我司逐步发展壮大，并于2015年3月重新注册成立并开始向出口型加工企业转型。
-                </p>
-                <p>
-                  我司的加工材料包括各种电渣重熔不锈钢加工件，铜合金加工件，可伐合金加工件，镍铝及镍铬合金加工件，
-                  各类镍基高温合金加工件等等各类特殊合金加工件。并可提供配套的镀锌，镀锡，镀金等各种表面加工。
-                  我司产品可用于陶瓷及玻璃产品的封接，被广泛应用于各类真空电极，传感器，热电偶的组装。
-                  我司拥有国内先进的数控加工设备，可满足客户的各类订单较短纳期的交货需求。我司还配备专业的检测设备
-                  并培养熟练的品控人员，从而保证了能及时交付各类加工产品，并保证质量的可靠性。
-                </p>
-                <p>
-                  我司的技术人员及操作员工在机械加工行业均有超过二十年的专业经验，熟悉加工件在各类真空设备上的组装及
-                  应用。我司在特种合金加工领域建立了一整套完善的供应链系统，建立了成套的从原材料到成品的存储体系，
-                  故我司可及时响应客户的各类产品需求，为客户提供一套完整的特种合金加工方案。
-                </p>
-                <p>
-                  随着我司的战略转型和业务方向调整，为了适应国际贸易的需要，我司于2018年初将海外销售部迁往上海，
-                  专业从事我司产品的海外销售及出口手续的办理。目前我司的合金加工制品在欧美的发达市场已逐步获得客户的
-                  认可和肯定，海外销售规模逐步扩大，目前我司产品已广泛应用于爱发科，可特莱斯科，欧瑞康等成套真空系统中。
-                  希望可以和更多的国内外客商携手，共谋企业发展大业！
-                </p>
-                <p>“专注于真空设备的精密零配件加工”是我司的核心竞争优势！</p>
-              </div>
+              <div class="text" v-html="pageItem.context"></div>
             </div>
           </div>
         </div>
         <div class="map-area">
-            <div class="title">
-              <h4>产 品 销 售 区 域</h4>
-            </div>
-            <div class="map">
-              <img src="../../assets/img/index-map.jpg" alt="">
-            </div>
+          <div class="title">
+            <h4>{{tagName.name2}}</h4>
           </div>
+          <div class="map">
+            <img src="../../assets/img/index-map.jpg" alt="" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import mixins from "../../mixins/index.js";
 export default {
-  mixins: [],
+  mixins: [mixins],
   data() {
     return {};
   },
-  computed: {},
-  created() {},
+  computed: {
+    tagName() {
+      if (this.languageType == 1) {
+        return {
+          name1: "公司介绍",
+          name2: "产品销售区域"
+        };
+      } else {
+        return {
+          name1: "Company Introduction",
+          name2: "Product Sales Area"
+        };
+      }
+    }
+  },
+  created() {
+    this.pageSort = 6;
+    if (this.menuData.length == 0) {
+      this.getMenuInfo();
+    }
+  },
   methods: {}
 };
 </script>
@@ -111,9 +106,7 @@ export default {
         .text
           width 56%
           color #3e3f3f
-          p
-            line-height 1.8
-            text-indent 28px
+          text-align justify
   .map-area
     .title
       margin-bottom 10px

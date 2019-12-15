@@ -9,8 +9,8 @@
         <img src="../qualityControl/assets/img/6.jpg" alt="" />
         <img src="./assets/img/info-3.jpg" alt="" />
       </div>
-      <div class="right-info">
-        <div class="info-item">
+      <div class="right-info" v-html="pageItem.context">
+        <!-- <div class="info-item">
           <h4>先进的设备和专业的员工</h4>
           <p>
             我司拥有60多台高端的数控加工及检测设备，专业的工程技术人员。
@@ -54,16 +54,16 @@
             专业的机加工服务是我们的核心优势，思豪真空致力于成为您所依赖的机加工供应商。
             我们很高兴的看到我们的加工和服务逐步得到海内外客户的认可。我们将持续为客户提供最好的机加工服务！
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
 </template>
 <script>
+import mixins from '../../mixins/index.js';
 import Banner from "./components/Banner.vue";
 export default {
-  mixins: [],
-  props: {},
+  mixins: [mixins],
   components: {
     Banner
   },
@@ -71,7 +71,12 @@ export default {
     return {};
   },
   computed: {},
-  created() {},
+  created() {
+    this.pageSort = 1;
+    if (this.menuData.length == 0) {
+      this.getMenuInfo();
+    }
+  },
   methods: {}
 };
 </script>

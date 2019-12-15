@@ -1,11 +1,11 @@
 <template>
-  <div class="box">
+  <div class="editor-box">
     <div :id="editorId"></div>
-    <div class="btn-box">
-      <span class="btn" @click="setContent">获取内容</span>
+    <!-- <div class="editor-btn">
+      <span class="btn" @click="setContent">设置内容</span>
       <span class="btn" @click="getContent">获取内容</span>
       <span class="btn" @click="clearContent">清除内容</span>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -90,6 +90,7 @@ export default {
     getContent() {
       let content = this.editor.txt.html();
       console.log(`content===${content}`);
+      return content;
     },
     // 追加内容
     appendContent() {
@@ -104,8 +105,18 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
-.box
-  margin-top 40px
-.btn-box
+.editor-btn
+  text-align center
   padding 20px 0
+  .btn
+    display inline-block
+    background #1493cf
+    color #ffffff
+    font-size 16px
+    padding 4px 20px
+    text-align center
+    border-radius 4px
+    cursor pointer
+    &:hover
+      opacity 0.8
 </style>

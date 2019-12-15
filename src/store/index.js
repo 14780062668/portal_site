@@ -16,6 +16,7 @@ const store = new Vuex.Store({
         cnName: "首页",
         enName: "index",
         pathName: "index",
+        canEdit: true,
         isShow: false
       },
       {
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
         cnName: "关于思豪",
         enName: "About Us",
         pathName: "about_me",
+        canEdit: true,
         isShow: true
       },
       {
@@ -36,6 +38,7 @@ const store = new Vuex.Store({
         cnName: "产品中心",
         enName: "Proudcts",
         pathName: "product",
+        canEdit: true,
         isShow: true
       },
       {
@@ -46,6 +49,7 @@ const store = new Vuex.Store({
         cnName: "生产设备",
         enName: "Equipments",
         pathName: "equipment",
+        canEdit: true,
         isShow: true
       },
       {
@@ -56,6 +60,7 @@ const store = new Vuex.Store({
         cnName: "质量控制",
         enName: "Quality Control",
         pathName: "quality_control",
+        canEdit: true,
         isShow: true
       },
       {
@@ -66,8 +71,9 @@ const store = new Vuex.Store({
         cnName: "联系方式",
         enName: "Contact Us",
         pathName: "contact_us",
+        canEdit: false,
         isShow: true
-      },
+      }
       // {
       //   id: 1000,
       //   enId: 1000,
@@ -78,12 +84,18 @@ const store = new Vuex.Store({
       //   pathName: "edit",
       //   isShow: false
       // }
-    ]
+    ],
+    // 菜单数据
+    menuData: []
   },
   mutations: {
     // 修改语言类型
     changeLanguage(state, val) {
       state.languageType = val;
+    },
+    // 修改菜单数据
+    changeMenuData(state,val){
+      state.menuData = val;
     }
   },
   getters: {
@@ -108,8 +120,30 @@ const store = new Vuex.Store({
           id: state.languageType == 1 ? item.id : item.enId,
           pathName: item.pathName,
           sort: item.sort,
+          cnId: item.id,
+          enId: item.enId,
+          cnName: item.cnName,
+          enName: item.enName,
           name: state.languageType == 1 ? item.cnName : item.enName
         });
+      }
+      return list;
+    },
+    editNavList(state) {
+      let list = [];
+      for (let item of state.navListBase) {
+        if (item.canEdit) {
+          list.push({
+            id: state.languageType == 1 ? item.id : item.enId,
+            pathName: item.pathName,
+            sort: item.sort,
+            cnId: item.id,
+            enId: item.enId,
+            cnName: item.cnName,
+            enName: item.enName,
+            name: state.languageType == 1 ? item.cnName : item.enName
+          });
+        }
       }
       return list;
     }

@@ -16,7 +16,7 @@
           </div>
           <div class="introduce-detail">
             <div class="detail-info">
-              <div class="text" v-if="languageType==1">
+              <div class="text" v-if="languageType == 1">
                 <div class="info-name">
                   <h2 class="cn-name">余姚市思豪真空科技有限公司</h2>
                 </div>
@@ -49,11 +49,11 @@
                 <div class="info-message">
                   <div class="tag-line">
                     <span class="tag">Factory Address:</span>
-                    No.86 XIANCHENDU, JIULEISHAN VILLAGE, FENGSHAN
-            TOWN, YUYAO CITY, ZHEJIANG PROVINCE, P.R.CHINA
+                    No.86 XIANCHENDU, JIULEISHAN VILLAGE, FENGSHAN TOWN, YUYAO
+                    CITY, ZHEJIANG PROVINCE, P.R.CHINA
                   </div>
                   <div class="tag-line">
-                    <span class="tag">tel:</span>
+                    <span class="tag">Tel:</span>
                     +86-574-62676122
                     <span class="tag" style="margin-left:14px;">Fax:</span>
                     0574-62676802
@@ -65,7 +65,7 @@
                     <span class="tag">Mobile:</span>13335844026
                   </div>
                   <div class="tag-line">
-                    <span class="tag">Mail:</span>tony@fine-boon.com
+                    <span class="tag">Email:</span>tony@fine-boon.com
                   </div>
                 </div>
               </div>
@@ -78,8 +78,8 @@
   </div>
 </template>
 <script>
-import AreaMap from '../../components/AreaMap.vue';
-import mixins from '../../mixins/index.js';
+import AreaMap from "../../components/AreaMap.vue";
+import mixins from "../../mixins/index.js";
 export default {
   mixins: [mixins],
   components: {
@@ -88,8 +88,12 @@ export default {
   data() {
     return {};
   },
-  computed: {},
-  created() {},
+  created() {
+    this.pageSort = 5;
+    if (this.menuData.length == 0) {
+      this.getMenuInfo();
+    }
+  },
   methods: {}
 };
 </script>

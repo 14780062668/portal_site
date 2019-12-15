@@ -16,35 +16,7 @@
           </div>
           <div class="introduce-detail">
             <div class="detail-info">
-              <div class="text">
-                <p>
-                  Seehao Company made quality the cornerstone of our business.
-                  Quality control is paramount inside of our company. ISO 9001
-                  accreditation ensures that all work is controlled and
-                  monitored with an emphasis on continual improvement. To
-                  guarantee the machined parts are to the quality you required,
-                  we have invested in the latest inspection equipments including
-                  projector, CMM. We ensure that raw materials, machined
-                  components, sub-contract services, heat treatments and surface
-                  treatments are completed match to each customers’
-                  specification. Full standard and bespoke documentation and
-                  material traceability are provided.
-                </p>
-                <p>
-                  Having documented-controlled processes, professional quality
-                  technicians and experienced production teams, we are able to
-                  meet your specific quality requirements. Through the use of
-                  various tools that include PPAP, APQP, FEMA and SPC, we
-                  continually and successfully guarantee that our commitments to
-                  you are met.
-                </p>
-                <p>
-                  We are committed to enlisting the full support of all our
-                  employees to continuously improve our machining and enhance
-                  quality, thereby fulfilling our customer's needs with zero
-                  defect machined products and services, on time and every time.
-                </p>
-              </div>
+              <div class="text" v-html="pageItem.context"></div>
             </div>
           </div>
         </div>
@@ -61,13 +33,19 @@
   </div>
 </template>
 <script>
+import mixins from "../../mixins/index.js";
 export default {
-  mixins: [],
+  mixins: [mixins],
   data() {
     return {};
   },
   computed: {},
-  created() {},
+  created() {
+    this.pageSort = 4;
+    if (this.menuData.length == 0) {
+      this.getMenuInfo();
+    }
+  },
   methods: {}
 };
 </script>
@@ -83,10 +61,8 @@ export default {
       flex 1
       .detail-info
         padding 20px 0 40px
-        p
-          line-height 2
-          font-size 16px
-          margin-bottom 30px
+        .text
+          text-align justify
   .img-box
     padding 100px 0 20px
     display flex

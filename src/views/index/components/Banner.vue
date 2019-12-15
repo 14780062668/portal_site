@@ -12,15 +12,35 @@
       </div>
       <div class="item">
         <img src="../assets/img/banner-1.jpg" alt="" />
+        <div class="text-box">
+          <div class="info">
+            <p>Precision Machined Components</p>
+          </div>
+        </div>
       </div>
       <div class="item">
         <img src="../assets/img/banner-2.jpg" alt="" />
+        <div class="text-box">
+          <div class="info">
+            <p>Specialist for Vacuum Machined Parts</p>
+          </div>
+        </div>
       </div>
       <div class="item">
         <img src="../assets/img/banner-3.jpg" alt="" />
+        <div class="text-box">
+          <div class="info">
+            <p>Precision Machined Components</p>
+          </div>
+        </div>
       </div>
       <div class="item">
         <img src="../assets/img/banner-4.jpg" alt="" />
+        <div class="text-box">
+          <div class="info">
+            <p>Specialist for Vacuum Machined Parts</p>
+          </div>
+        </div>
       </div>
     </a-carousel>
   </div>
