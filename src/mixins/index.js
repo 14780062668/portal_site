@@ -5,7 +5,7 @@ export default {
       // 语言类型
       languageType: "languageType",
       // 菜单总数据
-      menuData: 'menuData'
+      menuData: "menuData"
     }),
     ...mapGetters({
       // 主导航
@@ -13,7 +13,7 @@ export default {
       // 全部导航
       initNavList: "initNavList",
       // 可编辑的导航
-      editNavList: 'editNavList'
+      editNavList: "editNavList"
     }),
     pageItem() {
       let items = [];
@@ -36,7 +36,9 @@ export default {
         enAlias: enItem.alias,
         enName: enItem.name,
         sort: this.pageSort,
-        context: this.languageType == 1 ? cnItem.context : enItem.context
+        context: this.languageType == 1 ? cnItem.context : enItem.context,
+        cnContext: cnItem.context,
+        enContext: enItem.context
       };
     }
   },
@@ -59,7 +61,7 @@ export default {
     getMenuInfo() {
       this.$ajax.get(`content/query_menu_info`).then(({ data }) => {
         console.log("res===", data);
-        this.$store.commit('changeMenuData', data);
+        this.$store.commit("changeMenuData", data);
       });
     }
   }

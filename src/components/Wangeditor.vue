@@ -82,8 +82,8 @@ export default {
   },
   methods: {
     // 设置内容
-    setContent() {
-      let content = this.editor.txt.html("设置内容demo");
+    setContent(html='demo') {
+      let content = this.editor.txt.html(html);
       console.log(`content===${content}`);
     },
     // 获取内容
