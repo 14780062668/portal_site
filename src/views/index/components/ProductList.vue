@@ -22,37 +22,37 @@ export default {
           id: 3,
           cnName: "真空法兰",
           enName: "KF Flanges and CF Flanges",
-          imgUrl: require("../../product/assets/product-img/2.jpg")
+          imgUrl: require("../../product/assets/product-img/3.jpg")
         },
         {
           id: 5,
           cnName: "BNC和SHV接头外壳",
           enName: "BNC & SHV Adapter and Sockets",
-          imgUrl: require("../../product/assets/product-img/1.jpg")
+          imgUrl: require("../../product/assets/product-img/5.jpg")
         },
         {
           id: 7,
           cnName: "可伐连接器",
           enName: "Kovar Machined Adapters and headers",
-          imgUrl: require("../../product/assets/product-img/3.jpg")
+          imgUrl: require("../../product/assets/product-img/7.jpg")
         },
         {
           id: 9,
           cnName: "可伐连接针",
           enName: "Machined Kovar Conatcts and Conductors",
-          imgUrl: require("../../product/assets/product-img/5.jpg")
+          imgUrl: require("../../product/assets/product-img/9.jpg")
         },
         {
           id: 18,
           cnName: "其他铜端子",
           enName: "Machined Copper Ternimals and Connectors",
-          imgUrl: require("../../product/assets/product-img/4.jpg")
+          imgUrl: require("../../product/assets/product-img/18.jpg")
         },
         {
           id: 19,
           cnName: "蒙乃尔合金加工件",
           enName: "Monel Machined Parts",
-          imgUrl: require("../../product/assets/product-img/6.jpg")
+          imgUrl: require("../../product/assets/product-img/19.jpg")
         }
       ]
     };

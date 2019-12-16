@@ -195,4 +195,7 @@ export default {
       flex 1
     .editor-box
       flex 1
+.btn-box
+  margin 20px auto 60px
+
 </style>
