@@ -69,7 +69,6 @@ export default {
     flex-wrap wrap
     li
       padding 0 14px 14px 0
-      height 276px
       &:first-child
         width 45%
       &:nth-child(2)
