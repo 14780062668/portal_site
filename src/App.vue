@@ -18,10 +18,6 @@ export default {
     HeaderCom,
     FooterCom
   },
-  beforeCreate() {
-    // 设置title
-    document.title = "思豪科技";
-  },
   created() {
     // 查询菜单
     // this.$ajax

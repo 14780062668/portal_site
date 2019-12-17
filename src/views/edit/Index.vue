@@ -33,7 +33,12 @@
             size="large"
           />
         </li> -->
-        <template v-if="[1, 3, 4].includes(menuValue)">
+        <li class="line">
+           <span class="tag">上传图片:</span>
+            <upload />
+        </li>
+       
+        <template v-if="[1, 3, 4, 6].includes(menuValue)">
           <li class="line">
             <span class="tag">内容(中文):</span>
             <wangeditor ref="cnContent" />
@@ -43,7 +48,7 @@
             <wangeditor ref="enContent" />
           </li>
         </template>
-        <template v-else-if="[6].includes(menuValue)">
+        <!-- <template v-else-if="[6].includes(menuValue)">
           <li class="line">
             <span class="tag">内容(中文):</span>
             <a-textarea placeholder="请输入内容(中文)" v-model="cnContent" :rows="4"/>
@@ -52,7 +57,7 @@
             <span class="tag">内容(英文):</span>
             <a-textarea placeholder="请输入内容(英文)" v-model="enContent" :rows="4"/>
           </li>
-        </template>
+        </template> -->
       </ul>
     </div>
     <div class="btn-box">
@@ -60,7 +65,6 @@
         确定修改
       </span>
     </div>
-    <!-- <upload /> -->
   </div>
 </template>
 <script>
