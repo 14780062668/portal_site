@@ -37,7 +37,10 @@
            <span class="tag">上传图片:</span>
             <upload />
         </li>
-       
+        <!-- <li class="line">
+           <span class="tag">oss上传图片:</span>
+            <oss-upload />
+        </li>        -->
         <template v-if="[1, 3, 4, 6].includes(menuValue)">
           <li class="line">
             <span class="tag">内容(中文):</span>
@@ -71,11 +74,13 @@
 import mixins from "../../mixins/index.js";
 import Upload from "../../components/ButtonUpload.vue";
 import Wangeditor from "../../components/Wangeditor.vue";
+import OssUpload from '../../components/OssUpload.vue';
 export default {
   mixins: [mixins],
   components: {
     Upload,
-    Wangeditor
+    Wangeditor,
+    OssUpload
   },
   data() {
     return {
@@ -95,7 +100,7 @@ export default {
   methods: {
     // 查询菜单详情
     queryMenuContent() {
-      // this.$ajax
+      // this.axios
       //   .get(`content/query_attachment_by_menu_id?menuId=${this.menuValue}`)
       //   .then(data => {
       //     console.log("res===", data);
@@ -153,7 +158,7 @@ export default {
             return false;
           }
           // 中文编辑
-          this.$ajax
+          this.axios
             .post(`content/update_menu_info`, {
               alias: this.cnName,
               context: cnContent,
@@ -164,7 +169,7 @@ export default {
               console.log("res===", data);
             });
           // 英文文编辑
-          this.$ajax
+          this.axios
             .post(`content/update_menu_info`, {
               alias: this.enName,
               context: enContent,
@@ -177,7 +182,7 @@ export default {
           break;
         default:
           // 只修改别名  this.menuValue=5
-          this.$ajax
+          this.axios
             .post(`content/update_menu_info`, {
               alias: this.aliseCnName,
               context: "",
@@ -187,7 +192,7 @@ export default {
             .then(({ data }) => {
               console.log("res===", data);
             });
-          this.$ajax
+          this.axios
             .post(`content/update_menu_info`, {
               alias: this.aliseEnName,
               context: "",

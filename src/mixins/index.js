@@ -59,7 +59,7 @@ export default {
     },
     // 获取菜单数据
     getMenuInfo() {
-      this.$ajax.get(`content/query_menu_info`).then(({ data }) => {
+      this.axios.get(`content/query_menu_info`).then(({ data }) => {
         console.log("res===", data);
         this.$store.commit("changeMenuData", data);
       });

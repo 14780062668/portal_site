@@ -26,7 +26,7 @@ Vue.use(BaiduMap, {
 import "./assets/style/default.styl";
 
 //将axios挂载到Vue的原型上
-Vue.prototype.$ajax = instance;
+Vue.prototype.axios = instance;
 
 /* eslint-disable no-new */
 new Vue({

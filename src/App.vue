@@ -20,13 +20,13 @@ export default {
   },
   created() {
     // 查询菜单
-    // this.$ajax
+    // this.axios
     //   .get(`content/query_attachment_by_menu_id?menuId=${1}`)
     //   .then(data => {
     //     console.log("res===", data);
     //   });
     // // 查询菜单详情
-    // this.$ajax.get(`content/query_menu_info`).then(({ data }) => {
+    // this.axios.get(`content/query_menu_info`).then(({ data }) => {
     //   console.log("res===", data);
     // });
 
