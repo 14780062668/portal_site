@@ -37,10 +37,6 @@
            <span class="tag">上传图片:</span>
             <upload />
         </li>
-        <!-- <li class="line">
-           <span class="tag">oss上传图片:</span>
-            <oss-upload />
-        </li>        -->
         <template v-if="[1, 3, 4, 6].includes(menuValue)">
           <li class="line">
             <span class="tag">内容(中文):</span>
