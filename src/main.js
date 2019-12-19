@@ -3,16 +3,21 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-import { Carousel,Input, Select, message } from "ant-design-vue";
+//import { Carousel,Input, Select, message, Radio, Confirm } from "ant-design-vue";
+import ant from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import store from "./store/index.js";
 import instance from "./util/axios.js";
 
-Vue.use(Carousel);
-Vue.use(Input);
-Vue.use(Select);
+// Vue.use(Carousel);
+// Vue.use(Input);
+// Vue.use(Select);
+// Vue.use(Radio);
+Vue.use(ant);
 
-Vue.prototype.$message = message;
+// Vue.prototype.$message = message;
+// console.log('confirm', ant);
+// Vue.prototype.$confirm = Confirm;
 
 Vue.config.productionTip = false;
 

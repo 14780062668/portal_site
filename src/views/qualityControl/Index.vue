@@ -83,5 +83,4 @@ export default {
         width 33.3%
       img
         width 100%
-        height 100%
 </style>

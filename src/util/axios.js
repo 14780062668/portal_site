@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "../../config/index.js";
+import store from '../store/index.js';
 
 console.log("config==", config);
 //axios全局配置
@@ -15,6 +16,7 @@ const instance = axios.create({
   }
 });
 // 在发送请求之前做些什么("请求拦截器")
+console.log('store==', store);
 instance.interceptors.request.use(
   config => {
     //假设接口需要对接token，可以用store保存token,在拦截器中设置到header中
@@ -25,6 +27,7 @@ instance.interceptors.request.use(
     //   config.headers.common["Authorization"] = store.state.Config.machine;
     // }
     //console.log('config==', config);
+    store.state.loading = true;
     return config;
   },
   error => {
@@ -35,11 +38,13 @@ instance.interceptors.request.use(
 //respone拦截器==>对响应做处理
 instance.interceptors.response.use(
   res => {
+    store.state.loading = false;
     //成功请求到数据
     if (res.status == 200) {
       return res;
     } else {
-      return "请求错误";
+      vm.$message.warning('请求错误');
+      //return "请求错误";
     }
   },
   error => {

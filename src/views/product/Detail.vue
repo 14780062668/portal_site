@@ -77,6 +77,7 @@ export default {
     productDetail(id) {
       if (!id) return false;
       console.log('id===', id);
+      this.activeSecondNav = id;
       let detail = this.productList.find(val => val.id == id);
       console.log('detail==', detail);
       this.detailData = detail;

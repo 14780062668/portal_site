@@ -40,7 +40,7 @@
             <div class="item circle">On-time<br />Delivery</div>
           </div>
         </div>
-        <product-list class="product" />
+        <product-list class="product" :productList="productList" />
       </div>
       <card-box class="card-box" />
     </div>
@@ -59,11 +59,45 @@ export default {
     CardBox
   },
   data() {
-    return {};
+    return {
+      productList: []
+    };
   },
   computed: {},
-  created() {},
+  created() {
+    this.pageSort = 1;
+    if (this.menuData.length == 0) {
+      this.queryMenuInfo();
+    }
+  },
   methods: {
+    // 获取菜单数据
+    queryMenuInfo() {
+      this.axios.get(`content/query_menu_info`).then(({ data }) => {
+        console.log("res===", data);
+        this.$store.commit("changeMenuData", data);
+        //this.getProductId();
+        // let timer = setTimeout(()=>{
+        //   this.queryFile();
+        //   clearTimeout(timer);
+        // }, 100);
+        this.$nextTick(()=>{
+          this.queryFile();
+        });
+      });
+    },
+    // 获取附件详情
+    queryFile() {
+      console.log('this.pageItem.id==', this.pageItem);
+      this.axios
+        .get(
+          `content/query_attachment_with_product_by_menu_id?menuId=${this.pageItem.id}`
+        )
+        .then(({ data }) => {
+          console.log("res===", data);
+          this.productList = data;
+        });
+    },
     gotoInfo() {
       this.$router.push({
         name: "index_info"

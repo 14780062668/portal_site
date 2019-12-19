@@ -21,12 +21,13 @@
         <div class="img-item" v-for="item in fileList" :key="item.id">
           <div class="file-name">
             <span>{{ item.name }} </span>
+            <span class="percent" v-if="!item.url">{{`${item.percent}%`}}</span>
             <i class="iconfont iconclose" @click="deleteFile(item)"></i>
           </div>
           <img v-if="item.url" :src="item.url" alt="" />
-          <div class="progress-box" v-else>
+          <!-- <div class="progress-box" v-else>
             <div class="progress" :style="{ width: `${item.percent}%` }"></div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -222,17 +223,33 @@ export default {
           FilesAdded: (up, files) => {
             console.log("files==", files);
             // 文件数限制
-            if(this.fileList.length >= this.maxFile){
+            if (this.fileList.length >= this.maxFile) {
               this.$message.warning(`只能上传${this.maxFile}个文件`);
               return false;
             }
             for (let file of files) {
               console.log("file===", file);
-              let index = this.fileList.findIndex(val => val.id === file.id);
-              console.log("index==", index);
-              if (index == -1) {
-                file.url = "";
-                this.fileList.push(file);
+              let { name } = file;
+              let nameArr = name.split(".");
+              let flieSuffix = nameArr.pop();
+              let hasFile = [
+                "jpg",
+                "jpeg",
+                "tiff",
+                "bmp",
+                "gif",
+                "png"
+              ].includes(flieSuffix);
+              console.log("name==", nameArr, flieSuffix);
+              if (hasFile) {
+                let index = this.fileList.findIndex(val => val.id === file.id);
+                console.log("index==", index);
+                if (index == -1 && hasFile) {
+                  file.url = "";
+                  this.fileList.push(file);
+                }
+              } else {
+                this.$message.warning("不支持的文件格式");
               }
             }
             // 开始上传
@@ -288,7 +305,7 @@ export default {
       this.$emit("changeFile", list);
     },
     // 改变文件
-    changeFile(files){
+    changeFile(files) {
       this.fileList = files;
     },
     saveFile(formData) {
@@ -337,18 +354,13 @@ export default {
       line-height 30px
       font-size 18px
       i
-        margin-left 20px
         width 30px
         cursor pointer
         color #1493cf
+        margin-left 20px
+    .percent
+      margin 0 20px 0 40px
+      color #1493cf
     img
       width 300px
-    .progress-box
-      width 100%
-      height 40px
-      background #f5f5f5
-      border-radius 4px
-      .progress
-        background #1493cf
-        height 100%
 </style>

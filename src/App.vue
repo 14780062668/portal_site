@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <loading v-if="loading" />
     <header-com></header-com>
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -12,13 +13,18 @@
 <script>
 import HeaderCom from "./components/HeaderCom.vue";
 import FooterCom from "./components/FooterCom.vue";
+import Loading from './components/Loading.vue';
+import mixins from './mixins/index.js';
 export default {
+  mixins: [mixins],
   name: "App",
   components: {
     HeaderCom,
-    FooterCom
+    FooterCom,
+    Loading
   },
   created() {
+    window.vm = this;
     // 查询菜单
     // this.axios
     //   .get(`content/query_attachment_by_menu_id?menuId=${1}`)
@@ -34,3 +40,5 @@ export default {
   }
 };
 </script>
+<style lang="stylus" scoped>
+</style>

@@ -250,28 +250,6 @@ export default {
     };
   },
   computed: {
-    productListData() {
-      let result = [];
-      for (let item of this.productListDataDemo) {
-        let param = {
-          id: item.id,
-          name: this.languageType == 1 ? item.cnName : item.enName,
-          cnName: item.cnName,
-          enName: item.enName,
-          children: item.children
-        };
-        for (let todo of param.children) {
-          todo = {
-            id: todo.id,
-            name: this.languageType == 1 ? todo.cnName : todo.enName,
-            cnName: todo.cnName,
-            enName: todo.enName
-          };
-        }
-        result.push(param);
-      }
-      return result;
-    },
     // 产品列表
     productList() {
       let result = [];
@@ -295,6 +273,7 @@ export default {
     // 切换nav
     changeNav(item) {
       this.activeNav = item.id;
+      this.getProductId();
     },
     // 获取菜单数据
     queryMenuInfo() {

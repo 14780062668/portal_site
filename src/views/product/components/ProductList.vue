@@ -2,7 +2,8 @@
   <ul id="list-box">
     <li v-for="item in productList" :key="item.id" @click="goDetail(item)">
       <div class="img-box">
-        <img :src="item.attachment" alt="" />
+        <!-- <img :src="item.attachment" alt="" /> -->
+        <div class="img" :style="{'background-image': `url(${item.attachment})`}"></div>
         <div class="hover-text">
           <p>{{ item.name }}</p>
           <p><i class="iconfont iconjia"></i></p>
@@ -20,7 +21,7 @@ export default {
     return {
       productList: [],
       // 一级产品id
-      productId1: ''
+      productId1: ""
     };
   },
   computed: {},
@@ -33,6 +34,11 @@ export default {
         .get(`product/query_product_by_menu_id?menuId=${id}`)
         .then(({ data }) => {
           console.log("res===", data);
+          // for(let item of data){
+          //   let $img = document.createElement('img');
+          //    $img.src = item.attachment;
+          //    console.log('img==', $img,$img.width);
+          // }
           this.productList = data;
         });
     },
@@ -65,9 +71,12 @@ li
     border-radius 2px
     position relative
     overflow hidden
-    img
+    .img
       width 100%
       height 100%
+      background-repeat no-repeat
+      background-position center center
+      background-size cover
     .hover-text
       position absolute
       left 0
@@ -86,7 +95,7 @@ li
           font-weight 700
   &:hover
     .img-box
-      img
+      .img
         transform scale(1.2)
         transition 0.5s
       &:after

@@ -74,7 +74,11 @@ export default {
       return result;
     }
   },
-  created() {},
+  created() {
+    let languageVal = sessionStorage.getItem('languageVal');
+    languageVal = languageVal || 1;
+    this.changeLanguage(languageVal, 1);
+  },
   methods: {
     // 去首页
     goHomePage() {
@@ -83,9 +87,24 @@ export default {
       });
     },
     // 切换语言
-    changeLanguage(type) {
+    // first:1 设置的
+    changeLanguage(type, first) {
+      if(this.languageVal == type) return false;
       this.languageVal = type;
       this.$store.commit("changeLanguage", type);
+      sessionStorage.setItem('languageVal', type);
+      if(first==1){
+        return false;
+      }
+      let {name} = this.$route;
+      if(name == 'edit'){
+        this.$router.go(0);
+      }else{
+        this.$router.push({
+          name: "Index"
+        });
+        this.$router.go(0);
+      }
     }
   }
 };

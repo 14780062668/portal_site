@@ -65,16 +65,21 @@
                 :class="['btn', { 'active-btn': item.id == productId2 }]"
                 :key="item.id"
                 @click="handleChangeSubmenu(item, 2)"
-                >{{ item.name }}</span
+                >{{ item.name }}
+                <i
+                  class="iconfont iconclose"
+                  @click.stop="deleteProduct(item)"
+                ></i>
+              </span>
+              <span
+                :class="['btn', { 'active-btn': -1 == productId2 }]"
+                @click="addProduct"
+                ><i class="iconfont iconjia"></i> 添加</span
               >
-              <span :class="['btn', { 'active-btn': -1 == productId2 }]"
-                @click="addProduct"><i class="iconfont iconjia"></i> 添加</span>
             </div>
           </li>
           <li>
-            <span class="tag"
-              >{{ languageType == 1 ? "产品名称" : "ProductName" }}:</span
-            >
+            <span class="tag">产品名称</span>
             <a-input
               v-model="productName"
               placeholder="请输入名称"
@@ -101,6 +106,21 @@
               size="large"
             />
           </li>
+          <li>
+            <span class="tag">首页是否展示:</span>
+            <div class="tag-content">
+              <span
+                class="item-radio"
+                v-for="item in showSort"
+                :key="item.id"
+                @click="productShowIndex(item)"
+              >
+                <a-radio size="large" :checked="item.checked">{{
+                  item.name
+                }}</a-radio>
+              </span>
+            </div>
+          </li>
           <!-- <li>
             <span class="tag">英文名:</span>
             specialty: '',
@@ -110,10 +130,12 @@
           </li> -->
           <li>
             <span class="tag">上传图片:</span>
-            <upload class="upload" 
-              ref="productUpload" 
+            <upload
+              class="upload"
+              ref="productUpload"
               :maxFile="1"
-              @changeFile="changeFile" />
+              @changeFile="changeFile"
+            />
           </li>
         </template>
       </ul>
@@ -157,7 +179,46 @@ export default {
       cnContent: "",
       enContent: "",
       // 文件列表
-      fileList: []
+      fileList: [],
+      // 展示顺序
+      showSort: [
+        {
+          id: -1,
+          checked: true,
+          name: "不展示"
+        },
+        {
+          id: 1,
+          checked: false,
+          name: "1"
+        },
+        {
+          id: 2,
+          checked: false,
+          name: "2"
+        },
+        {
+          id: 3,
+          checked: false,
+          name: "3"
+        },
+        {
+          id: 4,
+          checked: false,
+          name: "4"
+        },
+        {
+          id: 5,
+          checked: false,
+          name: "5"
+        },
+        {
+          id: 6,
+          checked: false,
+          name: "6"
+        }
+      ],
+      showIndex: 0
     };
   },
   created() {
@@ -206,22 +267,27 @@ export default {
     handleChangeSubmenu(item, type) {
       console.log(item);
       // type: 1:一级产品 2: 二级产品
-      if(type == 1){
+      if (type == 1) {
         this.productId1 = item.id;
         this.getList();
-      }else{
+      } else {
         this.productId2 = item.id;
-        let detail = this.secondProductList.find(val=> val.id === item.id);
-        console.log('detail==', detail);
+        let detail = this.secondProductList.find(val => val.id === item.id);
+        console.log("detail==", detail);
         this.productName = detail.name;
         this.material = detail.material;
         this.adhibition = detail.adhibition;
         this.specialty = detail.specialty;
-        this.fileList = [{
-          id: this.riseUuid(),
-          name: detail.name,
-          url: detail.attachment
-        }];
+        this.fileList = [
+          {
+            id: this.riseUuid(),
+            name: detail.name,
+            url: detail.attachment
+          }
+        ];
+        this.productShowIndex({
+          id: detail.sort
+        });
         this.$refs.productUpload.changeFile(this.fileList);
       }
     },
@@ -232,22 +298,59 @@ export default {
         .then(({ data }) => {
           console.log("二级产品列表===", data);
           this.secondProductList = data;
-          //this.productDetail(this.productId2);
+          this.addProduct();
         });
     },
     // 添加产品
-    addProduct(){
+    addProduct() {
+      this.productShowIndex({
+        id: 0
+      });
       this.productId2 = -1;
-      this.productName = '';
-      this.material = '';
-      this.adhibition = '';
-      this.specialty = '';
+      this.productName = "";
+      this.material = "";
+      this.adhibition = "";
+      this.specialty = "";
       this.fileList = [];
       this.$refs.productUpload.changeFile([]);
+    },
+    // 删除产品
+    deleteProduct(item) {
+      console.log("item==", item.id);
+      this.$confirm({
+        title: `是否删除${item.name}?`,
+        okText: this.languageType == 1 ? "确定" : "yes",
+        cancelText: this.languageType == 1 ? "取消" : "No",
+        //content: "Some descriptions",
+        onOk: () => {
+          this.axios
+            .delete("product/delete_product_by_id", {
+              params: {
+                id: item.id
+              }
+            })
+            .then(data => {
+              console.log("delete===", data);
+              this.$message.success("删除成功");
+              this.getList();
+            });
+        },
+        onCancel: () => {
+          this.$message.warning("取消删除产品");
+        },
+        class: "test"
+      });
     },
     // 选择文件
     changeFile(file) {
       this.fileList = file;
+    },
+    // 首页展示
+    productShowIndex(todo) {
+      for (let item of this.showSort) {
+        item.checked = item.id === todo.id ? true : false;
+      }
+      this.showIndex = todo.id;
     },
     // 确定编辑
     sureEdit() {
@@ -322,7 +425,6 @@ export default {
             this.$message.warning("请导入图片");
             return false;
           }
-
           params = {
             adhibition: this.adhibition,
             attachment: this.fileList[0].url,
@@ -331,12 +433,31 @@ export default {
             name: this.productName,
             specialty: this.specialty
           };
+          if (this.showIndex > 0) {
+            params.relationInfo = {
+              menuId: this.initNavList[0].id,
+              relationSort: this.showIndex
+            };
+          }
           console.log("params==", params);
-          this.axios
-            .post(`product/add_product`, params)
-            .then(({ data }) => {
+          // 添加
+          if (this.productId2 == -1) {
+            this.axios.post(`product/add_product`, params).then(({ data }) => {
               console.log("res===", data);
+              this.$message.success("添加成功");
+              this.getList();
             });
+          } else {
+            // 编辑产品
+            params.id = this.productId2;
+            this.axios
+              .post(`product/update_product`, params)
+              .then(({ data }) => {
+                this.$message.success("编辑产品成功");
+                console.log("res===", data);
+                this.getList();
+              });
+          }
           break;
         default:
           // 只修改别名  this.menuValue=5
@@ -399,6 +520,8 @@ export default {
           color #ffffff
           background #1493cf
           border-color #1493cf
+        i
+          margin-left 10px
       .active-btn
         color #ffffff
         background #1493cf
@@ -407,6 +530,10 @@ export default {
       flex 1
     .ant-select
       flex 1
+    .item-radio
+      margin-right 10px
+      .ant-radio-wrapper
+        line-height 40px
     .editor-box
       flex 1
     .upload

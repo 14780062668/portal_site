@@ -86,7 +86,8 @@ const store = new Vuex.Store({
       // }
     ],
     // 菜单数据
-    menuData: []
+    menuData: [],
+    loading: false
   },
   mutations: {
     // 修改语言类型

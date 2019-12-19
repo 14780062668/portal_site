@@ -1,10 +1,14 @@
 <template>
   <ul id="list-box">
-    <li v-for="item in list" :key="item.id" @click="goProduct(item)">
+    <li
+      v-for="item in productList"
+      :key="item.productId"
+      @click="goProduct(item)"
+    >
       <div class="img-box">
-        <img :src="item.imgUrl" alt="" />
+        <div class="img" :style="{'background-image': `url(${item.attachment})`}"></div>
         <div class="hover-text">
-          <p>{{ item.name }}</p>
+          <p>{{ item.comment }}</p>
           <p><i class="iconfont iconjia"></i></p>
         </div>
       </div>
@@ -15,69 +19,26 @@
 import mixins from "../../../mixins/index.js";
 export default {
   mixins: [mixins],
-  data() {
-    return {
-      listData: [
-        {
-          id: 3,
-          cnName: "真空法兰",
-          enName: "KF Flanges and CF Flanges",
-          imgUrl: require("../../product/assets/product-img/3.jpg")
-        },
-        {
-          id: 5,
-          cnName: "BNC和SHV接头外壳",
-          enName: "BNC & SHV Adapter and Sockets",
-          imgUrl: require("../../product/assets/product-img/5.jpg")
-        },
-        {
-          id: 7,
-          cnName: "可伐连接器",
-          enName: "Kovar Machined Adapters and headers",
-          imgUrl: require("../../product/assets/product-img/7.jpg")
-        },
-        {
-          id: 9,
-          cnName: "可伐连接针",
-          enName: "Machined Kovar Conatcts and Conductors",
-          imgUrl: require("../../product/assets/product-img/9.jpg")
-        },
-        {
-          id: 18,
-          cnName: "其他铜端子",
-          enName: "Machined Copper Ternimals and Connectors",
-          imgUrl: require("../../product/assets/product-img/18.jpg")
-        },
-        {
-          id: 19,
-          cnName: "蒙乃尔合金加工件",
-          enName: "Monel Machined Parts",
-          imgUrl: require("../../product/assets/product-img/19.jpg")
-        }
-      ]
-    };
-  },
-  computed: {
-    list() {
-      return this.listData.map(val => {
-        return {
-          id: val.id,
-          name: this.languageType == 1 ? val.cnName : val.enName,
-          imgUrl: val.imgUrl
-        };
-      });
+  props: {
+    productList: {
+      type: Array,
+      default: []
     }
+  },
+  data() {
+    return {};
   },
   methods: {
     // 到产品详情
-    goProduct(item){
-      console.log('item==', item);
+    goProduct(item) {
+      console.log("item==", item);
       this.$router.push({
-        path: 'product',
+        path: "product_detail",
         query: {
-          id: item.id
+          productId1: item.productMenuId,
+          id: item.productId
         }
-      })
+      });
     }
   }
 };
@@ -101,9 +62,12 @@ li
     border-radius 2px
     position relative
     overflow hidden
-    img
+    .img
       width 100%
       height 100%
+      background-repeat no-repeat
+      background-position center center
+      background-size cover
     .hover-text
       position absolute
       left 0
@@ -121,7 +85,7 @@ li
           font-weight 700
   &:hover
     .img-box
-      img
+      .img
         transform scale(1.2)
         transition 0.5s
       &:after

@@ -5,7 +5,8 @@ export default {
       // 语言类型
       languageType: "languageType",
       // 菜单总数据
-      menuData: "menuData"
+      menuData: "menuData",
+      loading: 'loading'
     }),
     ...mapGetters({
       // 主导航
@@ -40,9 +41,11 @@ export default {
         enContext: enItem.context
       };
       if (this.languageType == 1) {
+        params.id = cnItem.id;
         params.context = cnItem.context;
         params.subMenus = cnItem.subMenus;
       } else {
+        params.id = enItem.id;
         params.context = enItem.context;
         params.subMenus = enItem.subMenus;
       }

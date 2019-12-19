@@ -27,7 +27,7 @@
         >{{ detailData.name }}
       </li>
       <li>
-        <span class="tag">Texture of material:</span
+        <span class="tag">Material:</span
         >{{ detailData.material }}
       </li>
       <li>
