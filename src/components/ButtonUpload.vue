@@ -33,10 +33,6 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { Upload } from "ant-design-vue";
-Vue.use(Upload);
-
 let accessid = "LTAI4Fd5rBAXJD1ph8ou8BD6";
 let accesskey = "ZMtW6iqNtIfJt9P2pk7gpxeiUR6ELi";
 let host = "http://jianghuxiami.oss-us-east-1.aliyuncs.com";
@@ -144,7 +140,12 @@ function set_upload_param(up, filename, ret) {
 
 export default {
   mixins: [],
-  props: {},
+  props: {
+    maxFile: {
+      type: Number,
+      default: 1
+    }
+  },
   components: {},
   data() {
     return {
@@ -171,16 +172,6 @@ export default {
     this.initUpload();
   },
   methods: {
-    getAuthorization() {
-      //Authorization = "OSS " + AccessKeyId + ":" + Signature
-      // Signature = base64(hmac-sha1(AccessKeySecret,
-      //             VERB + "\n"
-      //             + Content-MD5 + "\n"
-      //             + Content-Type + "\n"
-      //             + Date + "\n"
-      //             + CanonicalizedOSSHeaders
-      //             + CanonicalizedResource))
-    },
     // 开始上传
     beforeUpload(data) {
       console.log("data-==", data);
@@ -230,6 +221,11 @@ export default {
           },
           FilesAdded: (up, files) => {
             console.log("files==", files);
+            // 文件数限制
+            if(this.fileList.length >= this.maxFile){
+              this.$message.warning(`只能上传${this.maxFile}个文件`);
+              return false;
+            }
             for (let file of files) {
               console.log("file===", file);
               let index = this.fileList.findIndex(val => val.id === file.id);
@@ -289,7 +285,11 @@ export default {
     deleteFile(item) {
       this.fileList = this.fileList.filter(val => val.id != item.id);
       let list = this.fileList.filter(val => val.url);
-      this.$meit("changeFile", list);
+      this.$emit("changeFile", list);
+    },
+    // 改变文件
+    changeFile(files){
+      this.fileList = files;
     },
     saveFile(formData) {
       this.axios({

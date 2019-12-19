@@ -78,7 +78,7 @@ export default {
       if (!id) return false;
       console.log('id===', id);
       let detail = this.productList.find(val => val.id == id);
-      console.log('aaa==', detail);
+      console.log('detail==', detail);
       this.detailData = detail;
     },
     // 切换产品

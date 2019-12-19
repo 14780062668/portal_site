@@ -59,7 +59,7 @@
           </li>
           <li>
             <span class="tag">二级产品目录:</span>
-            <div class="tag-content">
+            <div class="tag-content" v-show="productId1">
               <span
                 v-for="item in secondProductList"
                 :class="['btn', { 'active-btn': item.id == productId2 }]"
@@ -67,7 +67,8 @@
                 @click="handleChangeSubmenu(item, 2)"
                 >{{ item.name }}</span
               >
-              <span class="btn"><i class="iconfont iconjia"></i> 添加</span>
+              <span :class="['btn', { 'active-btn': -1 == productId2 }]"
+                @click="addProduct"><i class="iconfont iconjia"></i> 添加</span>
             </div>
           </li>
           <li>
@@ -109,7 +110,10 @@
           </li> -->
           <li>
             <span class="tag">上传图片:</span>
-            <upload class="upload" @changeFile="changeFile" />
+            <upload class="upload" 
+              ref="productUpload" 
+              :maxFile="1"
+              @changeFile="changeFile" />
           </li>
         </template>
       </ul>
@@ -147,7 +151,7 @@ export default {
       // 应用
       adhibition: "",
       productId1: "",
-      productId2: "",
+      productId2: -1,
       secondProductList: [],
       // 内容
       cnContent: "",
@@ -199,10 +203,47 @@ export default {
       }
     },
     // 选择产品
-    handleChangeSubmenu(item) {
+    handleChangeSubmenu(item, type) {
       console.log(item);
-      this.productId1 = item.id;
-      this.secondProductList = item.subMenus;
+      // type: 1:一级产品 2: 二级产品
+      if(type == 1){
+        this.productId1 = item.id;
+        this.getList();
+      }else{
+        this.productId2 = item.id;
+        let detail = this.secondProductList.find(val=> val.id === item.id);
+        console.log('detail==', detail);
+        this.productName = detail.name;
+        this.material = detail.material;
+        this.adhibition = detail.adhibition;
+        this.specialty = detail.specialty;
+        this.fileList = [{
+          id: this.riseUuid(),
+          name: detail.name,
+          url: detail.attachment
+        }];
+        this.$refs.productUpload.changeFile(this.fileList);
+      }
+    },
+    // 查询产品列表
+    getList() {
+      this.axios
+        .get(`product/query_product_by_menu_id?menuId=${this.productId1}`)
+        .then(({ data }) => {
+          console.log("二级产品列表===", data);
+          this.secondProductList = data;
+          //this.productDetail(this.productId2);
+        });
+    },
+    // 添加产品
+    addProduct(){
+      this.productId2 = -1;
+      this.productName = '';
+      this.material = '';
+      this.adhibition = '';
+      this.specialty = '';
+      this.fileList = [];
+      this.$refs.productUpload.changeFile([]);
     },
     // 选择文件
     changeFile(file) {
