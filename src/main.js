@@ -11,6 +11,7 @@ import instance from "./util/axios.js";
 Vue.use(Carousel);
 Vue.use(Input);
 Vue.use(Select);
+
 Vue.prototype.$message = message;
 
 Vue.config.productionTip = false;

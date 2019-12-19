@@ -52,7 +52,17 @@ export default new Router({
       name: "product",
       component: () => import('@/views/product/Index.vue'),
       meta: {
-        keepAlive: false
+        keepAlive: false,
+        name: '产品列表'
+      }
+    },
+    {
+      path: "/product_detail",
+      name: "product_detail",
+      component: () => import('@/views/product/Detail.vue'),
+      meta: {
+        keepAlive: false,
+        name: '产品详情'
       }
     },
     {

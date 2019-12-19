@@ -28,7 +28,7 @@ export default {
           enItem = item;
         }
       }
-      return {
+      let params = {
         cnId: cnItem.id,
         cnName: cnItem.name,
         cnAlias: cnItem.alias,
@@ -36,10 +36,17 @@ export default {
         enAlias: enItem.alias,
         enName: enItem.name,
         sort: this.pageSort,
-        context: this.languageType == 1 ? cnItem.context : enItem.context,
         cnContext: cnItem.context,
         enContext: enItem.context
       };
+      if (this.languageType == 1) {
+        params.context = cnItem.context;
+        params.subMenus = cnItem.subMenus;
+      } else {
+        params.context = enItem.context;
+        params.subMenus = enItem.subMenus;
+      }
+      return params;
     }
   },
   data() {

@@ -1,30 +1,6 @@
 <template>
   <div>
     <div>
-      <!-- <h2>OSS web直传---直接在JS签名</h2>
-      <ol>
-        <li>基于plupload封装</li>
-        <li>支持html5,flash,silverlight,html4 等协议上传</li>
-        <li>可以运行在PC浏览器，手机浏览器，微信</li>
-        <li>可以选择多文件上传</li>
-        <li>显示上传进度条</li>
-        <li>可以控制上传文件的大小</li>
-        <li>
-          最关键的是，让你10分钟之内就能移植到你的系统，实现以上牛逼的功能！
-        </li>
-        <li>注意一点，bucket必须设置了Cors(Post打勾）,不然没有办法上传</li>
-        <li>
-          注意一点，把upload.js
-          里面的host/accessid/accesskey改成您上传所需要的信息即可
-        </li>
-        <li>
-          此方法是直接在前端签名，有accessid/accesskey泄漏的风险,
-          线上生产请使用后端签名例子<a
-            href="https://help.aliyun.com/document_detail/oss/practice/pc_web_upload/js_php_upload.html"
-            >点击查看详细文档</a
-          >
-        </li>
-      </ol> -->
       <form name="theform" style="display:none;">
         <input type="radio" name="myradio" value="local_name" checked="true" />
         上传文件名字保持本地文件名字
@@ -38,11 +14,20 @@
           size="50"
         />
       </form>
-      <p class="list-tip">您所选择的文件列表:</p>
-      <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
       <div id="container" class="container">
         <a id="selectfiles" href="javascript:void(0);" class="btn">选择文件</a>
-        <a id="postfiles" href="javascript:void(0);" class="btn">开始上传</a>
+      </div>
+      <div class="img-box" v-if="fileList.length > 0">
+        <div class="img-item" v-for="item in fileList" :key="item.id">
+          <div class="file-name">
+            <span>{{ item.name }} </span>
+            <i class="iconfont iconclose" @click="deleteFile(item)"></i>
+          </div>
+          <img v-if="item.url" :src="item.url" alt="" />
+          <div class="progress-box" v-else>
+            <div class="progress" :style="{ width: `${item.percent}%` }"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -65,7 +50,7 @@ var suffix = "";
 var tmp_name = "";
 
 var policyText = {
-  expiration: "2020-01-01T12:00:00.000Z", //设置该Policy的失效时间，超过这个失效时间之后，就没有办法通过这个policy上传文件了
+  expiration: "2030-01-01T12:00:00.000Z", //设置该Policy的失效时间，超过这个失效时间之后，就没有办法通过这个policy上传文件了
   conditions: [
     ["content-length-range", 0, 1048576000] // 设置上传文件的大小限制
   ]
@@ -176,14 +161,14 @@ export default {
         OSSAccessKeyId: "LTAI4Fd5rBAXJD1ph8ou8BD6",
         AccessKeySecret: "ZMtW6iqNtIfJt9P2pk7gpxeiUR6ELi"
       },
-      fileList: []
+      fileList: [],
+      progress: 0,
+      fileMaxNumber: 1
     };
   },
-  computed: {},
-  created() {
-    setTimeout(() => {
-      this.test2();
-    }, 2000);
+  mounted() {
+    // 初始化上传
+    this.initUpload();
   },
   methods: {
     getAuthorization() {
@@ -219,13 +204,14 @@ export default {
       // formData.append("token", "aiufpaidfupipiu"); //随便写一个token示例
       this.saveFile(formData);
     },
-
-    test() {
-      console.log(1);
-      set_upload_param(uploader, "", false);
-    },
-
-    test2() {
+    initUpload() {
+      if (!plupload) {
+        let timer = setTimeout(() => {
+          this.initUpload();
+          clearTimeout(timer);
+        }, 1000);
+      }
+      let $this = this;
       let uploader = new plupload.Uploader({
         runtimes: "html5,flash,silverlight,html4",
         browse_button: "selectfiles",
@@ -237,68 +223,73 @@ export default {
 
         init: {
           PostInit: function() {
-            document.getElementById("ossfile").innerHTML = "";
-            document.getElementById("postfiles").onclick = function() {
-              set_upload_param(uploader, "", false);
-              return false;
-            };
+            // document.getElementById("postfiles").onclick = function() {
+            //   set_upload_param(uploader, "", false);
+            //   return false;
+            // };
           },
-
-          FilesAdded: function(up, files) {
-            plupload.each(files, function(file) {
-              document.getElementById("ossfile").innerHTML +=
-                '<div id="' +
-                file.id +
-                '">' +
-                file.name +
-                " (" +
-                plupload.formatSize(file.size) +
-                ")<b></b>" +
-                '<div class="progress"><div class="progress-bar" style="width: 0%"></div></div>' +
-                "</div>";
-            });
+          FilesAdded: (up, files) => {
+            console.log("files==", files);
+            for (let file of files) {
+              console.log("file===", file);
+              let index = this.fileList.findIndex(val => val.id === file.id);
+              console.log("index==", index);
+              if (index == -1) {
+                file.url = "";
+                this.fileList.push(file);
+              }
+            }
+            // 开始上传
+            set_upload_param(uploader, "", false);
           },
-
           BeforeUpload: function(up, file) {
             check_object_radio();
             get_dirname();
             set_upload_param(up, file.name, true);
           },
 
-          UploadProgress: function(up, file) {
-            var d = document.getElementById(file.id);
-            d.getElementsByTagName("b")[0].innerHTML =
-              "<span>" + file.percent + "%</span>";
-            var prog = d.getElementsByTagName("div")[0];
-            var progBar = prog.getElementsByTagName("div")[0];
-            progBar.style.width = 2 * file.percent + "px";
-            progBar.setAttribute("aria-valuenow", file.percent);
+          UploadProgress: (up, file) => {
+            console.log(file);
+            let index = this.fileList.findIndex(val => val.id === file.id);
+            if (index > -1) {
+              this.fileList[index].percent = file.percent;
+            }
+            // var d = document.getElementById(file.id);
+            // var prog = d.getElementsByTagName("div")[0];
+            // var progBar = prog.getElementsByTagName("div")[0];
+            // let percent = file.percent;
+            // progBar.style.width = percent + "%";
+            // progBar.innerHTML = percent + "%";
+            // progBar.setAttribute("aria-valuenow", file.percent);
           },
-
-          FileUploaded: function(up, file, info) {
-            if (info.status == 200) {
-              document
-                .getElementById(file.id)
-                .getElementsByTagName("b")[0].innerHTML =
-                "upload to oss success, object name:" +
-                get_uploaded_object_name(file.name);
-            } else {
-              document
-                .getElementById(file.id)
-                .getElementsByTagName("b")[0].innerHTML = info.response;
+          FileUploaded: (up, file, info) => {
+            console.log(up, file, info);
+            let url = `${this.action}/${file.name}`;
+            console.log("url=", url);
+            let index = this.fileList.findIndex(val => val.id === file.id);
+            if (index > -1) {
+              this.fileList[index].url = url;
+              if (info.status == 200) {
+                let list = this.fileList.filter(val => val.url);
+                this.$emit("changeFile", list);
+                this.$message.success("上传成功");
+              } else {
+                this.$message.warning("上传失败");
+              }
             }
           },
-
           Error: function(up, err) {
-            document
-              .getElementById("console")
-              .appendChild(
-                document.createTextNode("\nError xml:" + err.response)
-              );
+            this.$message.warning("上传失败");
           }
         }
       });
       uploader.init();
+    },
+    // 删除文件
+    deleteFile(item) {
+      this.fileList = this.fileList.filter(val => val.id != item.id);
+      let list = this.fileList.filter(val => val.url);
+      this.$meit("changeFile", list);
     },
     saveFile(formData) {
       this.axios({
@@ -334,11 +325,30 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
-.list-tip
-  color #666
-  font-size 18px
 .container
+  line-height 40px
   .btn
     font-size 18px
     color #1493cf
+.img-box
+  .img-item
+    margin-bottom 20px
+    .file-name
+      line-height 30px
+      font-size 18px
+      i
+        margin-left 20px
+        width 30px
+        cursor pointer
+        color #1493cf
+    img
+      width 300px
+    .progress-box
+      width 100%
+      height 40px
+      background #f5f5f5
+      border-radius 4px
+      .progress
+        background #1493cf
+        height 100%
 </style>

@@ -1,42 +1,42 @@
 <template>
   <div class="detail">
     <div class="img">
-      <img :src="detailData.imgUrl" alt="" />
+      <img :src="detailData.attachment" alt="" />
     </div>
     <ul class="detail-info" v-if="languageType == 1">
       <li>
         <span class="tag">名称:</span
-        >{{ detailData.cnName}}
+        >{{ detailData.name}}
       </li>
       <li>
         <span class="tag">材质:</span
-        >{{ detailData.cnName }}
+        >{{ detailData.material }}
       </li>
       <li>
         <span class="tag">特点:</span
-        >{{ detailData.cnName }}
+        >{{ detailData.specialty }}
       </li>
       <li>
         <span class="tag">应用:</span
-        >{{ detailData.cnName }}
+        >{{ detailData.adhibition }}
       </li>
     </ul>
     <ul class="detail-info" v-else>
       <li>
         <span class="tag">Name:</span
-        >{{ detailData.enName }}
+        >{{ detailData.name }}
       </li>
       <li>
         <span class="tag">Texture of material:</span
-        >{{ detailData.enName }}
+        >{{ detailData.material }}
       </li>
       <li>
         <span class="tag">Characteristic:</span
-        >{{ detailData.enName }}
+        >{{ detailData.specialty }}
       </li>
       <li>
         <span class="tag">Application:</span
-        >{{ detailData.enName }}
+        >{{ detailData.adhibition }}
       </li>
     </ul>
     <div class="btn-box">
@@ -82,7 +82,6 @@ export default {
     width 700px
     img
       width 100%
-      height 100%
   .detail-info
     padding 54px 18px 120px
     color #1493cf

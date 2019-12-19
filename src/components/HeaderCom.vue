@@ -53,6 +53,7 @@ export default {
           result = 6;
           break;
         case "product":
+        case "product_detail":
           result = 2;
           break;
         case "equipment":

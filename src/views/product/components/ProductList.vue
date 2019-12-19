@@ -2,9 +2,9 @@
   <ul id="list-box">
     <li v-for="item in productList" :key="item.id" @click="goDetail(item)">
       <div class="img-box">
-        <img :src="item.imgUrl" alt="">
+        <img :src="item.attachment" alt="" />
         <div class="hover-text">
-          <p>{{ languageType==1?item.cnName:item.enName }}</p>
+          <p>{{ item.name }}</p>
           <p><i class="iconfont iconjia"></i></p>
         </div>
       </div>
@@ -12,25 +12,39 @@
   </ul>
 </template>
 <script>
-import mixins from '../../../mixins/index.js';
+import mixins from "../../../mixins/index.js";
 export default {
   mixins: [mixins],
-  props: {
-    productList: {
-      type: Array,
-      default: []
-    }
-  },
   components: {},
   data() {
     return {
+      productList: [],
+      // 一级产品id
+      productId1: ''
     };
   },
   computed: {},
   methods: {
+    // 查询列表
+    getList(id) {
+      if (!id) return false;
+      this.productId1 = id;
+      this.axios
+        .get(`product/query_product_by_menu_id?menuId=${id}`)
+        .then(({ data }) => {
+          console.log("res===", data);
+          this.productList = data;
+        });
+    },
     // 查看详情
-    goDetail(item){
-      this.$emit('goDetail', item);
+    goDetail(item) {
+      this.$router.push({
+        path: "product_detail",
+        query: {
+          productId1: this.productId1,
+          id: item.id
+        }
+      });
     }
   }
 };
@@ -69,7 +83,7 @@ li
         padding 0 30px
         i
           font-size 40px
-          font-weight 700 
+          font-weight 700
   &:hover
     .img-box
       img

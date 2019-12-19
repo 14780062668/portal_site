@@ -30,7 +30,8 @@
             <h4>{{tagName.name2}}</h4>
           </div>
           <div class="map">
-            <img src="../../assets/img/index-map.jpg" alt="" />
+            <img v-if="languageType==1" src="../../assets/img/index-map.jpg" alt="" />
+            <img v-else src="../../assets/img/index-map2.jpg" alt="" />
           </div>
         </div>
       </div>

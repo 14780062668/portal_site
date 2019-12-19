@@ -14,51 +14,21 @@
           <p>产品中心</p>
         </div>
         <div class="product-box">
-          <!--资源详情-->
-          <template v-if="hasDetail">
-            <ul class="nav-list" v-if="languageType==1">
-              <li
-                v-for="item in secondNavList"
-                :key="item.id"
-                @click="changeNav(2, item)"
-                :class="[{ activeNav: activeSecondNav == item.id }]"
-                :title="item.cnName"
-              >
-                {{ item.cnName }}
-              </li>
-            </ul>
-             <ul class="nav-list" v-else>
-              <li
-                v-for="item in secondNavList"
-                :key="item.id"
-                @click="changeNav(2, item)"
-                :class="[{ activeNav: activeSecondNav == item.id }]"
-                :title="item.enName"
-              >
-                {{ item.enName }}
-              </li>
-            </ul>
-            <div class="product-content">
-              <product-detail :detailData="detailData" @goList="goList" />
-            </div>
-          </template>
           <!--资源列表-->
-          <template v-else>
-            <ul class="nav-list">
-              <li
-                v-for="item in productListData"
-                :key="item.id"
-                @click="changeNav(1, item)"
-                :class="[{ activeNav: activeNav == item.id }]"
-                :title="item.name"
-              >
-                {{ item.name }}
-              </li>
-            </ul>
-            <div class="product-content">
-              <product-list :productList="productList" @goDetail="goDetail" />
-            </div>
-          </template>
+          <ul class="nav-list">
+            <li
+              v-for="item in pageItem.subMenus"
+              :key="item.id"
+              @click="changeNav(item)"
+              :class="[{ activeNav: activeNav == item.id }]"
+              :title="item.name"
+            >
+              {{ item.name }}
+            </li>
+          </ul>
+          <div class="product-content">
+            <product-list ref="product_list" />
+          </div>
         </div>
       </div>
     </div>
@@ -66,13 +36,11 @@
 </template>
 <script>
 import ProductList from "./components/ProductList.vue";
-import ProductDetail from "./components/ProductDetail.vue";
 import mixins from "../../mixins/index.js";
 export default {
   mixins: [mixins],
   components: {
-    ProductList,
-    ProductDetail
+    ProductList
   },
   data() {
     return {
@@ -277,12 +245,8 @@ export default {
           ]
         }
       ],
-      activeNav: 1,
-      activeSecondNav: 0,
-      secondNavList: [],
-      // 是否在详情
-      hasDetail: false,
-      detailData: {}
+      activeNav: '',
+      activeSecondNav: 0
     };
   },
   computed: {
@@ -308,62 +272,52 @@ export default {
       }
       return result;
     },
+    // 产品列表
     productList() {
       let result = [];
-      let item = this.productListData.find(val => val.id === this.activeNav);
-      if (item.children) {
-        result = item.children;
+      let { subMenus } = this.pageItem;
+      if (subMenus && subMenus.length > 0) {
+        let item = subMenus.find(val => val.id === this.activeNav);
+        if (item) result = item.subMenus;
       }
       return result;
     }
   },
-  mounted() {
-    // 产品id
-    let { id } = this.$route.query;
-    this.productDetail(id);
+  created() {
+    this.pageSort = 2;
+    if (this.menuData.length == 0) {
+      this.queryMenuInfo();
+    } else {
+      this.getProductId();
+    }
   },
   methods: {
-    // 产品详情
-    productDetail(id) {
-      if (!id) return false;
-      for (let item of this.productListData) {
-        for (let todo of item.children) {
-          if (todo.id == id) {
-            this.activeNav = item.id;
-            this.secondNavList = item.children;
-            this.activeSecondNav = id;
-            this.hasDetail = true;
-            this.detailData = todo;
-          }
-        }
-      }
-    },
     // 切换nav
-    // type: 1.一级目录  2.2级目录
-    changeNav(type, item) {
-      if (type === 1) {
-        this.activeNav = item.id;
-        this.secondNavList = item.children;
-        // this.goList();
-      } else {
-        this.goDetail(item);
-      }
+    changeNav(item) {
+      this.activeNav = item.id;
     },
-    // 查看资源详情
-    goDetail(item) {
-      console.log("item=-==", item);
-      let itemList = this.productListData.find(
-        val => val.id === this.activeNav
-      );
-      this.secondNavList = itemList.children;
-      this.activeSecondNav = item.id;
-      this.detailData = item;
-      this.hasDetail = true;
+    // 获取菜单数据
+    queryMenuInfo() {
+      this.axios.get(`content/query_menu_info`).then(({ data }) => {
+        console.log("res===", data);
+        this.$store.commit("changeMenuData", data);
+        this.getProductId();
+      });
     },
-    // 返回列表
-    goList() {
-      this.hasDetail = false;
-      this.detailData = {};
+    // 获取一级产品列表
+    getProductId() {
+      let timer = setTimeout(() => {
+        if(this.activeNav){
+          this.$refs.product_list.getList(this.activeNav);
+        }else if(this.pageItem && this.pageItem.subMenus.length){
+          this.activeNav = this.pageItem.subMenus[0].id;
+          this.$refs.product_list.getList(this.activeNav);
+        }else{
+          this.getProductId();
+        }
+        console.log(`获取一级产品列表id=${this.activeNav}`);
+        clearTimeout(timer);
+      }, 500);
     }
   }
 };
