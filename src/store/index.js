@@ -97,6 +97,10 @@ const store = new Vuex.Store({
     // 修改菜单数据
     changeMenuData(state,val){
       state.menuData = val;
+    },
+    // 修改loading
+    changeLoading(state,val){
+      state.loading = val;
     }
   },
   getters: {

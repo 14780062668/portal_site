@@ -235,32 +235,33 @@ export default {
       //   .then(data => {
       //     console.log("res===", data);
       //   });
-      console.log("设置富文本值");
-      if (this.menuValue == 6) {
-        this.cnContent = this.pageItem.cnContext;
-        this.enContent = this.pageItem.enContext;
-      } else {
-        this.editorTimer = setTimeout(() => {
-          if (this.$refs.cnContent && this.$refs.enContent) {
-            this.$refs.cnContent.setContent(this.pageItem.cnContext);
-            this.$refs.enContent.setContent(this.pageItem.enContext);
-            clearTimeout(this.editorTimer);
-          } else {
-            clearTimeout(this.editorTimer);
-            this.queryMenuContent();
-          }
-        }, 1000);
-      }
+      this.editorTimer = setTimeout(() => {
+        if (this.$refs.cnContent && this.$refs.enContent) {
+          console.log("设置富文本值==", this.pageItem.cnContext);
+          this.cnContent = this.pageItem.cnContext;
+          this.enContent = this.pageItem.enContext;
+          this.$refs.cnContent.setContent(this.pageItem.cnContext);
+          this.$refs.enContent.setContent(this.pageItem.enContext);
+          clearTimeout(this.editorTimer);
+        } else {
+          clearTimeout(this.editorTimer);
+          this.queryMenuContent();
+        }
+        this.$store.commit('changeLoading', false);
+      }, 1000);
     },
     // 选择编辑菜单
     handleChangeMenu(val) {
       console.log("val==", val);
+      if(this.menuValue === val) return false;
       this.menuValue = val;
       this.pageSort = val;
       if ([1, 3, 4, 6].includes(val)) {
+        this.$store.commit('changeLoading', true);
         this.queryMenuContent();
       } else {
         clearTimeout(this.editorTimer);
+        this.$store.commit('changeLoading', false);
       }
     },
     // 选择产品

@@ -15,22 +15,37 @@
             <p>关于我们</p>
           </div>
           <div class="introduce-detail">
-            <h4>{{tagName.name1}}</h4>
+            <h4>{{ tagName.name1 }}</h4>
             <div class="detail-info">
               <div class="imgs">
                 <img src="../../assets/img/index-1.jpg" alt="" />
                 <img src="../../assets/img/index-2.jpg" alt="" />
               </div>
-              <div class="text" v-html="pageItem.context"></div>
+              <div
+                class="text"
+                v-if="contentArr.length > 0"
+                v-html="contentArr[0]"
+              ></div>
             </div>
+            <div
+              class="text"
+              v-for="(item, index) in contentArr"
+              :key="index"
+              v-show="index > 0"
+              v-html="item"
+            ></div>
           </div>
         </div>
         <div class="map-area">
           <div class="title">
-            <h4>{{tagName.name2}}</h4>
+            <h4>{{ tagName.name2 }}</h4>
           </div>
           <div class="map">
-            <img v-if="languageType==1" src="../../assets/img/index-map.jpg" alt="" />
+            <img
+              v-if="languageType == 1"
+              src="../../assets/img/index-map.jpg"
+              alt=""
+            />
             <img v-else src="../../assets/img/index-map2.jpg" alt="" />
           </div>
         </div>
@@ -58,6 +73,13 @@ export default {
           name2: "Product Sales Area"
         };
       }
+    },
+    contentArr() {
+      let result = [];
+      if (this.pageItem && this.pageItem.context) {
+        result = this.pageItem.context.split("$_$");
+      }
+      return result;
     }
   },
   created() {
@@ -97,7 +119,7 @@ export default {
           left 0
           top 8px
       .detail-info
-        padding 20px 0 40px
+        padding 20px 0 0
         display flex
         .imgs
           width 44%
@@ -110,7 +132,7 @@ export default {
           text-align justify
   .map-area
     .title
-      margin-bottom 10px
+      margin 40px 0 10px 0
       h4
         margin-left 220px
         color #1493cf
