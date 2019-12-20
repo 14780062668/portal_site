@@ -8,7 +8,7 @@
         :icon="iconIndo"
       >
         <bm-label
-          content="余姚市思豪真空科技有限公司"
+          :content="content"
           :labelStyle="{
             color: '#f00',
             fontSize: '14px',
@@ -26,6 +26,7 @@ import area from "../assets/img/area.png";
 export default {
   data() {
     return {
+      content: '余姚市思豪真空科技有限公司',
       center: { lng: 0, lat: 0 },
       zoom: 1,
       markerPoint: {

@@ -8,7 +8,7 @@
       <div class="img-box">
         <div class="img" :style="{'background-image': `url(${item.attachment})`}"></div>
         <div class="hover-text">
-          <p>{{ item.comment }}</p>
+          <p>{{ item.productName }}</p>
           <p><i class="iconfont iconjia"></i></p>
         </div>
       </div>
