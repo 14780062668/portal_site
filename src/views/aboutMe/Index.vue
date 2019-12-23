@@ -21,19 +21,9 @@
                 <img src="../../assets/img/index-1.jpg" alt="" />
                 <img src="../../assets/img/index-2.jpg" alt="" />
               </div>
-              <div
-                class="text"
-                v-if="contentArr.length > 0"
-                v-html="contentArr[0]"
-              ></div>
+              <div class="text" v-html="contentFirst"></div>
             </div>
-            <div
-              class="text"
-              v-for="(item, index) in contentArr"
-              :key="index"
-              v-show="index > 0"
-              v-html="item"
-            ></div>
+            <div class="text" v-if="contentLast" v-html="contentLast"></div>
           </div>
         </div>
         <div class="map-area">
@@ -74,12 +64,19 @@ export default {
         };
       }
     },
-    contentArr() {
+    contentFirst() {
       let result = [];
       if (this.pageItem && this.pageItem.context) {
         result = this.pageItem.context.split("$_$");
       }
-      return result;
+      return result.length > 0 ? result[0] : "";
+    },
+    contentLast() {
+      let result = [];
+      if (this.pageItem && this.pageItem.context) {
+        result = this.pageItem.context.split("$_$");
+      }
+      return result.length > 1 ? result[1] : "";
     }
   },
   created() {

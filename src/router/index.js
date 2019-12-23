@@ -1,9 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Nprogress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "hash",
   //base: "",
   scrollBehavior(to, from, savedPosition) {
@@ -115,3 +117,11 @@ export default new Router({
     }
   ]
 });
+router.beforeEach((to,from,next)=>{
+  Nprogress.start();
+  next();
+});
+router.afterEach(()=>{
+  Nprogress.done();
+});
+export default router;
