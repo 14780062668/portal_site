@@ -14,26 +14,6 @@
             >
           </div>
         </li>
-        <!-- <li>
-          <span class="tag">别名(中文):</span>
-          <a-input
-            v-model="aliseCnName"
-            placeholder="请输入别名(中文)"
-            size="large"
-          />
-        </li>
-        <li>
-          <span class="tag">别名(英文):</span>
-          <a-input
-            v-model="aliseEnName"
-            placeholder="请输入别名(英文)"
-            size="large"
-          />
-        </li> -->
-        <!-- <li>
-          <span class="tag">上传图片:</span>
-          <upload />
-        </li> -->
         <template v-if="[1, 3, 4, 6].includes(menuValue)">
           <li>
             <span class="tag">内容(中文):</span>
@@ -66,15 +46,13 @@
                 :key="item.id"
                 @click="handleChangeSubmenu(item, 2)"
                 >{{ item.name }}
-                <i
-                  class="iconfont iconclose"
-                  @click.stop="deleteProduct(item)"
-                ></i>
+                <iconfont type="iconclose" @click.stop="deleteProduct(item)"/>
               </span>
               <span
                 :class="['btn', { 'active-btn': -1 == productId2 }]"
                 @click="addProduct"
-                ><i class="iconfont iconjia"></i> 添加</span
+                ><iconfont type="iconjia"/>
+                添加</span
               >
             </div>
           </li>

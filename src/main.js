@@ -3,21 +3,35 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-//import { Carousel,Input, Select, message, Radio, confirm } from "ant-design-vue";
-import antd from "ant-design-vue";
-import 'ant-design-vue/dist/antd.css'; 
+import {
+  Carousel,
+  Input,
+  Select,
+  message,
+  Radio,
+  Modal,
+  Spin,
+  Icon
+} from "ant-design-vue";
+//import antd from "ant-design-vue";
+import "ant-design-vue/dist/antd.css";
 import store from "./store/index.js";
 import instance from "./util/axios.js";
 
-// Vue.use(Carousel);
-// Vue.use(Input);
-// Vue.use(Select);
-// Vue.use(Radio);
-Vue.use(antd);
+Vue.use(Carousel);
+Vue.use(Input);
+Vue.use(Select);
+Vue.use(Radio);
+Vue.use(Modal);
+Vue.use(Spin);
+Vue.use(Icon);
 
-// Vue.prototype.$message = message;
-// console.log('confirm', confirm);
-// Vue.prototype.$confirm = confirm;
+
+Vue.prototype.$message = message;
+let { confirm } = Modal;
+Vue.prototype.$confirm = confirm;
+
+//Vue.use(antd);
 
 Vue.config.productionTip = false;
 
@@ -33,7 +47,11 @@ import "./assets/style/default.styl";
 
 //将axios挂载到Vue的原型上
 Vue.prototype.axios = instance;
-
+// iocnfont
+const MyIcon = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1525425_49fo7wfj1ek.js', // 在 iconfont.cn 上生成
+});
+Vue.component('iconfont', MyIcon);
 /* eslint-disable no-new */
 new Vue({
   el: "#app",

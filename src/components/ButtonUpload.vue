@@ -22,7 +22,7 @@
           <div class="file-name">
             <span>{{ item.name }} </span>
             <span class="percent" v-if="!item.url">{{`${item.percent}%`}}</span>
-            <i class="iconfont iconclose" @click="deleteFile(item)"></i>
+            <iconfont type="iconclose" @click="deleteFile(item)" />
           </div>
           <img v-if="item.url" :src="item.url" alt="" />
           <!-- <div class="progress-box" v-else>

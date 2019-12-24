@@ -9,7 +9,7 @@
         <div class="img" :style="{'background-image': `url(${item.attachment})`}"></div>
         <div class="hover-text">
           <p>{{ item.productName }}</p>
-          <p><i class="iconfont iconjia"></i></p>
+          <p><iconfont type="iconjia" /></p>
         </div>
       </div>
     </li>

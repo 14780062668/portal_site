@@ -6,7 +6,7 @@
         <h2>Why Choose us?</h2>
         <div class="why-btn">
           <span @click="gotoInfo">为什么选择我们</span>
-          <i @click="gotoInfo" class="iconfont icondianji-"></i>
+          <iconfont @click="gotoInfo" type="icondianji-" />
         </div>
         <template v-if="languageType == 1">
           <div class="why-intro">
@@ -15,9 +15,9 @@
           </div>
           <div class="why-Advantage">
             <div class="item circle">专业</div>
-            <div class="item plus"><i class="iconfont iconjia"></i></div>
+            <div class="item plus"><iconfont type="iconjia" /></div>
             <div class="item circle">质优</div>
-            <div class="item plus"><i class="iconfont iconjia"></i></div>
+            <div class="item plus"><iconfont type="iconjia" /></div>
             <div class="item circle">纳期</div>
           </div>
         </template>
@@ -34,9 +34,9 @@
           </div>
           <div class="why-Advantage">
             <div class="item circle">Professional<br />Service</div>
-            <div class="item plus"><i class="iconfont iconjia"></i></div>
+            <div class="item plus"><iconfont type="iconjia" /></div>
             <div class="item circle">Reliable<br />Quality</div>
-            <div class="item plus"><i class="iconfont iconjia"></i></div>
+            <div class="item plus"><iconfont type="iconjia" /></div>
             <div class="item circle">On-time<br />Delivery</div>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default {
         letter-spacing 16px
         margin 34px 30px 0 0
         cursor pointer
-      .icondianji-
+      .anticon
         color #1493cf
         font-size 90px
         cursor pointer
