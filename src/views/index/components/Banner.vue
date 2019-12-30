@@ -1,6 +1,7 @@
 <template>
   <div class="banner-box">
-    <a-carousel autoplay>
+    <!--autoplay-->
+    <a-carousel >
       <div class="item">
         <img src="../assets/img/banner-0.jpg" alt="" />
         <div class="text-box">
@@ -54,20 +55,19 @@ export default {
     position absolute
     left 0
     right 0
-    top 76px
+    top 84px
     text-align left
     .info
-      width 710px
-      margin 0 auto
+      margin-left 24.2%
       .text
         color #1493cf
       .large
-        font-size 44px
+        font-size 42px
       .eng
         line-height 40px
-        font-size 36px
+        font-size 34px
       .cn
-        font-size 44px
+        font-size 43px
     p
       margin-bottom 0
 
