@@ -4,50 +4,36 @@
       <div class="item">
         <img src="../assets/img/banner-0.jpg" alt="" />
         <div class="text-box">
-          <div class="info">
-            <p>Precision Machining Service</p>
-            <p>Professional Manufacturer for CNC Machined Parts</p>
+          <div class="info" v-if="languageType==2">
+            <p class="text large">PRECISION MACHINING SERVICE</p>
+            <p class="eng">PROFESSIONAL MANUFACTURER<br />FOR CNC MACHINED PARTS</p>
           </div>
+          <div class="info" v-else>
+            <p class="text">真空领域、稀有合金精密定制件</p>
+            <p class="text">专业的机械加工公司</p>
+          </div>
+          
         </div>
       </div>
       <div class="item">
         <img src="../assets/img/banner-1.jpg" alt="" />
-        <div class="text-box">
-          <div class="info">
-            <p>Precision Machined Components</p>
-          </div>
-        </div>
       </div>
       <div class="item">
         <img src="../assets/img/banner-2.jpg" alt="" />
-        <div class="text-box">
-          <div class="info">
-            <p>Specialist for Vacuum Machined Parts</p>
-          </div>
-        </div>
       </div>
       <div class="item">
         <img src="../assets/img/banner-3.jpg" alt="" />
-        <div class="text-box">
-          <div class="info">
-            <p>Precision Machined Components</p>
-          </div>
-        </div>
       </div>
       <div class="item">
         <img src="../assets/img/banner-4.jpg" alt="" />
-        <div class="text-box">
-          <div class="info">
-            <p>Specialist for Vacuum Machined Parts</p>
-          </div>
-        </div>
       </div>
     </a-carousel>
   </div>
 </template>
 <script>
+import mixins from '../../../mixins/index.js';
 export default {
-  mixins: [],
+  mixins: [mixins],
   props: {},
   components: {},
   data() {
@@ -72,8 +58,15 @@ export default {
     top 170px
     text-align left
     .info
-      width 628px
+      width 630px
       margin 0 auto
+      .text
+        color #1493cf
+      .large
+        font-size 28px
+      .eng
+        font-size 24px
+        line-height 28px
     p
       margin-bottom 0
 
