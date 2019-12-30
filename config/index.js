@@ -9,11 +9,13 @@ const path = require("path");
 //   ".js");
 let { env } = process;
 const NODE_ENV = env && env.NODE_ENV ? env.NODE_ENV : "dev";
+
 const baseUrl =
   NODE_ENV == "dev"
-    ? "http://47.252.23.23:8080/portal/api"
-    : "http://localhost:8080/portal/api";
-//const baseUrl = "http://47.252.23.23:8080/portal/api";
+    ? "http://139.196.56.192:80/portal/api"
+    : "http://localhost:80/portal/api";
+console.log('baseUrl==', baseUrl);
+//const baseUrl = "http://localhost:80/portal/api";
 module.exports = {
   dev: {
     // Paths

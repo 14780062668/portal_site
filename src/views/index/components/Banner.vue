@@ -9,8 +9,8 @@
             <p class="eng">PROFESSIONAL MANUFACTURER<br />FOR CNC MACHINED PARTS</p>
           </div>
           <div class="info" v-else>
-            <p class="text">真空领域、稀有合金精密定制件</p>
-            <p class="text">专业的机械加工公司</p>
+            <p class="text cn">真空领域、稀有合金精密定制件</p>
+            <p class="text cn">专业的机械加工公司</p>
           </div>
           
         </div>
@@ -50,23 +50,24 @@ export default {
   overflow hidden
   width 100%
   .text-box
-    font-size 26px
     color #fff
     position absolute
     left 0
     right 0
-    top 170px
+    top 76px
     text-align left
     .info
-      width 630px
+      width 710px
       margin 0 auto
       .text
         color #1493cf
       .large
-        font-size 28px
+        font-size 44px
       .eng
-        font-size 24px
-        line-height 28px
+        line-height 40px
+        font-size 36px
+      .cn
+        font-size 44px
     p
       margin-bottom 0
 
